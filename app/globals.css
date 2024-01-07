@@ -2,26 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+img{
+  width: 100%;
+}
+.text{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.hero{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/chad-montano-MqT0asuoIcU-unsplash\ \(2\).jpg');
+  height: 90vh;
+  background-repeat: no-repeat;
+}
+.pizza-bg{
+  background-image: url('../public/pablo-pacheco-D3Mag4BKqns-unsplash\ \(1\).jpg');
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.burger{
+  background-image: url('../public/mario--s27nY8mZUE-unsplash\ \(1\).jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.grid-menu{
+  display: grid;
+  grid-template-columns:  repeat(3,300px);
+  align-content: center;
+  justify-content: center;
+}
+/* 
+.unique{
+  background-image: url('../public/pexels-saveurs-secretes-5987010.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.menu-bg{
+  background-image: url('../public/quaid-lagan-jA9a1yepfEk-unsplash.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.delight-grid{
+  display: grid;
+  grid-template-columns:  repeat(2,550px);
+  align-content: center;
+  justify-content: center;
+  gap: 30px;
+}
+.burger-grid{
+  display: grid;
+  grid-template-columns:  repeat(1,550px);
+}
+.kebabs-grid{
+  display: grid;
+  grid-template-columns:  repeat(1,550px);
+  
+}
+.grid-k-b{
+  display: grid;
+  grid-template-columns:  repeat(2,550px);
+  align-content: center;
+  justify-content: center;
+  gap: 30px;
+}
+.special-discount-img{
+  background-image: url('../public/shayan-ramesht-exSEmuA7R7k-unsplash.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 19px;
+}
+
+.footer{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/nik-J_-p8jmKf-A-unsplash.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.about-hero{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/pest-control-pest-management-singapore-food-establisment-1-1024x682.jpeg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px;
+}
+
+.about-img-grid{
+  grid-template-columns: repeat(2,500px);
+  grid-template-columns: repeat(2,500px);
+}
+
+
+
+.contact-img{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/favour-otunji-dD7xFyDzES4-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
