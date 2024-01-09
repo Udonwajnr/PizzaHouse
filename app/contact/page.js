@@ -31,9 +31,9 @@ const ContactUs = () => {
     
   return (
     <Layout>
-        <div className='h-[50vh] about-hero flex items-center px-20'>
+        <div className='h-[50vh] contact-hero flex flex-col justify-center px-20'>
             <h3 className='text-3xl text-white'>Book A table</h3>
-            <h2 className='text-4xl text-white'>051.6331761</h2>
+            <h2 className='text-5xl text-white'>0516331761</h2>
         </div>
         <main>  
             <div className='flex items-center justify-center gap-x-5 py-20 flex-wrap'>
