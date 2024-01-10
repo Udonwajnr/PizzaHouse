@@ -9,14 +9,14 @@ const Menu = () => {
             <p className='text-sm text-center'>Indulge in out tantalizing menu featuring a symphony of flavours. From savory chicken strips to <br /> delightful kebabs. Our dishes promise a culinary journey that delight the senses.</p>
         </div>
 
-        <div className='menu-bg py-5'>
-            <div className='grid-menu justify-center items-center py-5 relative bottom-28'>
-                <div className=' bg-white p-5 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
-                    <h3 className='text-2xl font-bold'>Chicken Wrap</h3>
-                    <p className='text-center
+        <div className='menu-bg py-5 '>
+            <div className='grid-menu justify-center items-center py-5 md:py-1 relative md:bottom-auto bottom-28'>
+                <div className=' bg-white p-5 md:1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
+                    <h3 className='text-2xl font-bold md:text-lg'>Chicken Wrap</h3>
+                    <p className='text-center md:text-xs
                     '>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
                     <div className='border-t border-b border-black py-2'>
-                        <span className='text-xl'>6.00 $</span>
+                        <span className='text-xl md:text-xs'>6.00 $</span>
                     </div>
                 </div>
 
@@ -24,11 +24,11 @@ const Menu = () => {
                     <img src="pexels-saveurs-secretes-5987010.jpg" alt="img" className='w-[300px]'/>
                 </div>
 
-                <div className='bg-white p-5 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
-                    <h3 className='text-2xl font-bold'>Chicken Wrap</h3>
-                    <p className='text-center'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
+                <div className='bg-white p-5  md:1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
+                    <h3 className='text-2xl font-bold md:text-lg'>Chicken Wrap</h3>
+                    <p className='text-center md:text-xs'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
                     <div className='border-t border-b border-black py-2'>
-                        <span className='text-xl'>6.00 $</span>
+                        <span className='text-xl md:text-xs'>6.00 $</span>
                     </div>
                 </div>
 
@@ -36,11 +36,11 @@ const Menu = () => {
                     <img src="max-griss-3a4gRjgdweQ-unsplash (1).jpg" alt="img" className=''/>
                 </div>
 
-                <div className='bg-white p-5 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
-                    <h3 className='text-2xl font-bold'>Chicken Wrap</h3>
-                    <p className='text-center'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
+                <div className='bg-white p-5  md:1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
+                    <h3 className='text-2xl font-bold md:text-lg'>Chicken Wrap</h3>
+                    <p className='text-center md:text-xs'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
                     <div className='border-t border-b border-black py-2'>
-                        <span className='text-xl'>6.00 $</span>
+                        <span className='text-xl md:text-xs'>6.00 $</span>
                     </div>
                 </div>
 
@@ -48,11 +48,11 @@ const Menu = () => {
                     <img src="max-griss-3a4gRjgdweQ-unsplash (1).jpg" alt="img" className=''/>
                 </div>
 
-                <div className='bg-white p-5 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
-                    <h3 className='text-2xl font-bold'>Chicken Wrap</h3>
-                    <p className='text-center'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
+                <div className='bg-white p-5 md:1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
+                    <h3 className='text-2xl font-bold md:text-lg'>Chicken Wrap</h3>
+                    <p className='text-center md:text-xs'>Grilled or Fried chicken wrapped in a sort tortilla with fresh vegetable, sauce, and optional extras, creating a convenient and delicious meal</p>
                     <div className='border-t border-b py-2'>
-                        <span className='text-xl'>6.00 $</span>
+                        <span className='text-xl md:text-xs'>6.00 $</span>
                     </div>
                 </div>
 
@@ -60,11 +60,11 @@ const Menu = () => {
                     <img src="ben-lei-flFd8L7_B3g-unsplash.jpg" alt="img" />
                 </div>
 
-                <div className='bg-white p-5 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
-                    <h3 className='text-2xl font-bold'>Pizza Kebab</h3>
-                    <p className='text-center'>A pizza topped with kebab meat sauce and various toppings, combining the best of both worlds for a tasty and filling pizza experience</p>
+                <div className='bg-white p-5 md:p-1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>
+                    <h3 className='text-2xl font-bold md:text-lg'>Pizza Kebab</h3>
+                    <p className='text-center md:text-xs'>A pizza topped with kebab meat sauce and various toppings, combining the best of both worlds for a tasty and filling pizza experience</p>
                     <div className='border-t border-b py-2'>
-                        <span className='text-xl'>7.50 $</span>
+                        <span className='text-xl md:text-xs'>7.50 $</span>
                     </div>
                 </div>
             </div>

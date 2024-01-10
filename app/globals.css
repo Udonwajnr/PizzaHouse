@@ -13,7 +13,6 @@ img{
 
 .hero{
   background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/chad-montano-MqT0asuoIcU-unsplash\ \(2\).jpg');
-  height: 90vh;
   background-repeat: no-repeat;
 }
 .pizza-bg{
@@ -30,7 +29,8 @@ img{
 
 .grid-menu{
   display: grid;
-  grid-template-columns:  repeat(3,300px);
+  grid-template-columns: repeat(3, minmax(50px, 300px));
+  /* grid-template-columns: repeat(3, 300px); */
   align-content: center;
   justify-content: center;
 }
@@ -46,6 +46,7 @@ img{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .delight-grid{
   display: grid;
   grid-template-columns:  repeat(2,550px);
@@ -53,6 +54,7 @@ img{
   justify-content: center;
   gap: 30px;
 }
+
 .burger-grid{
   display: grid;
   grid-template-columns:  repeat(1,550px);
@@ -91,7 +93,6 @@ img{
 
 .about-img-grid{
   grid-template-columns: repeat(2,500px);
-  grid-template-columns: repeat(2,500px);
 }
 
 
@@ -105,4 +106,23 @@ img{
   background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/favour-otunji-dD7xFyDzES4-unsplash.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+
+/* responsive */
+.responsive-menu{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+@media only screen and (max-width: 767px) {
+  body {
+    background-color: lightblue;
+  }
+  .grid-menu{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  
 }

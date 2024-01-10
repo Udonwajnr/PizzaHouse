@@ -11,7 +11,7 @@ export default function Home() {
         <Hero/>
         <MostLoved/>
         <Menu/>
-        <Delight/>
+        {/* <Delight/> */}
         <SpecialDiscount/>
       </main>
     </Layout>

@@ -3,8 +3,8 @@ import Link from "next/link"
 
 const MostLoved = () => {
   return (
-    <section className='flex justify-between px-20 h-[90vh] items-center bg-[#f4f3f7]'>
-        <div className='w-6/12'>
+    <section className='flex justify-between px-20 md:px-1 h-[90vh] md:h-auto md:py-5 items-center bg-[#f4f3f7]'>
+        <div className='w-6/12 md:w-full'>
             <h6 className='text-2xl'>Country Most Loved</h6>
             <h2 className='text-4xl font-bold mt-3'>Welcome</h2>
             <article className='mt-10'>
@@ -16,11 +16,11 @@ const MostLoved = () => {
              </Link>
         </div>
 
-        <div className='w-[400px] h-[650px] pizza-bg'>
+        <div className='w-[400px] h-[650px] pizza-bg md:hidden'>
             {/* <img src="pablo-pacheco-D3Mag4BKqns-unsplash (1).jpg" alt="img" /> */}
         </div>
 
-        <div className='relative burger w-[400px] h-[650px] flex items-end justify-center py-5'>
+        <div className='relative burger w-[400px] h-[650px] flex items-end justify-center py-5 md:hidden'>
             <div className=''>
                 <h3 className='text-white text-4xl'>Open Everyday</h3>
                 <div className='flex flex-col justify-center items-center mt-6'>
