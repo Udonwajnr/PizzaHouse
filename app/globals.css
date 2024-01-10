@@ -116,9 +116,6 @@ img{
 
 
 @media only screen and (max-width: 767px) {
-  body {
-    background-color: lightblue;
-  }
   .grid-menu{
     display: flex;
     flex-wrap: wrap;

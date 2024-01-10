@@ -3,8 +3,8 @@ import Link from "next/link"
 const Menu = () => {
   return (
     <section className=''>
-        <div className='flex flex-col  items-center h-[30vh] '>
-            <h2 className='text-4xl'>Our Menu</h2>
+        <div className='flex flex-col  items-center h-[30vh] py-4 '>
+            <h2 className='text-4xl md:text-3xl font-bold'>Our Menu</h2>
             <p className='text-xl font-bold my-5'>Quality Ingredients,Tasty Meals</p>
             <p className='text-sm text-center'>Indulge in out tantalizing menu featuring a symphony of flavours. From savory chicken strips to <br /> delightful kebabs. Our dishes promise a culinary journey that delight the senses.</p>
         </div>
@@ -68,7 +68,7 @@ const Menu = () => {
                     </div>
                 </div>
             </div>
-                <Link href={"/"} className=' m-auto flex items-center bg-purple w-[200px] justify-center text-white py-2 rounded-3xl mt-10'>
+                <Link href={"/menu"} className=' m-auto flex items-center bg-purple w-[200px] justify-center text-white py-2 rounded-3xl mt-10'>
                     Discover more menu
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 24 24"><path fill="white" d="m14 18l-1.4-1.45L16.15 13H4v-2h12.15L12.6 7.45L14 6l6 6l-6 6Z"></path></svg>
                 </Link>

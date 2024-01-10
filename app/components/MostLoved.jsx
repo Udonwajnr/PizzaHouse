@@ -3,14 +3,14 @@ import Link from "next/link"
 
 const MostLoved = () => {
   return (
-    <section className='flex justify-between px-20 md:px-1 h-[90vh] md:h-auto md:py-5 items-center bg-[#f4f3f7]'>
-        <div className='w-6/12 md:w-full'>
+    <section className='flex justify-between px-20 md:px-3 h-[90vh] md:h-auto md:py-5 items-center bg-[#f4f3f7]'>
+        <div className='w-6/12 md:w-full flex flex-col justify-center items-center'>
             <h6 className='text-2xl'>Country Most Loved</h6>
             <h2 className='text-4xl font-bold mt-3'>Welcome</h2>
-            <article className='mt-10'>
+            <article className='mt-10 md:mt-2'>
                 Welcome to our digital Oasis of flavour step into a world where culinary artistry meets your cravings.Explore our menu crafted with passion,savor the taste of excellence and embark on a delightful journey through our detectable offering.Your culinary adventure begin here - enjoy the feast for yur senses!
             </article>
-            <Link href={"/"} className=' flex items-center bg-purple w-[200px] justify-center text-white py-2 rounded-3xl mt-10'>
+            <Link href={"/about"} className=' flex items-center bg-purple w-[200px] justify-center text-white py-2 rounded-3xl mt-10'>
                 More About Us
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 24 24"><path fill="white" d="m14 18l-1.4-1.45L16.15 13H4v-2h12.15L12.6 7.45L14 6l6 6l-6 6Z"></path></svg>
              </Link>
