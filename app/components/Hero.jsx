@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='hero flex justify-center items-center h-[90vh] md:h-[75vh]'>
+    <div className='hero flex justify-center items-center h-[90vh] md:h-[80vh]'>
       <div className='flex flex-col gap-y-10'>
         {/* <div>
             <img src="download.png" alt="" className='' />

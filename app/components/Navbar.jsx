@@ -4,7 +4,7 @@ import ResponsiveMenu from './ResponsiveMenu'
 const Navbar = () => {
   return (
     <>
-      <header className='px-20 py-3 md:py-1 bg-white md:px-5'>
+      <header className='px-20 py-3 md:py-1 bg-white md:px-5 shadow-md'>
         <nav className='flex justify-between items-center'>
           <div>
             <Link href={"/"}>
