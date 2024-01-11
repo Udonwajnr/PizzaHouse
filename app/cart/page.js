@@ -6,7 +6,7 @@ import CartTotal from '../components/CartTotal'
 const Cart = () => {
   return (
     <Layout>
-        <section className='px-20 justify-between  flex gap-x-5'>
+        <section className='px-20 justify-between flex gap-x-5'>
           <div className='w-8/12'>
             <div className='flex justify-between'>
                 <h4 className='text-2xl'>Products</h4>
