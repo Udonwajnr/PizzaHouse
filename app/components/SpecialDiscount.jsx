@@ -2,7 +2,7 @@ import React from 'react'
 import Link from "next/link"
 const SpecialDiscount = () => {
   return (
-    <section className='py-10'>
+    <section className='py-16 bg-[#f4f3f7]'>
         <div className='flex w-7/12 m-auto gap-x-10 md:flex-col md:w-full'>
             <div className='special-discount-img  w-6/12 flex justify-center items-end md:hidden'>
                 <span className='text-white text-lg'>Good Food | Good Pizza</span>

@@ -3,11 +3,11 @@ import Link from "next/link"
 
 const MostLoved = () => {
   return (
-    <section className='flex justify-between px-20 md:px-3 h-[90vh] md:h-auto md:py-10 items-center bg-[#f4f3f7]'>
-        <div className='w-6/12 md:w-full flex flex-col justify-center items-center'>
+    <section className='flex justify-between px-20 md:px-3 h-[90vh] md:h-auto md:py-10  items-center bg-[#f4f3f7]'>
+        <div className='w-6/12 md:w-full flex flex-col justify-center md:items-center'>
             <h6 className='text-2xl'>Country Most Loved</h6>
             <h2 className='text-4xl font-bold mt-3'>Welcome</h2>
-            <article className='mt-10 md:mt-2 text-center'>
+            <article className='mt-10 md:mt-2 md:text-center'>
                 Welcome to our digital Oasis of flavour step into a world where culinary artistry meets your cravings.Explore our menu crafted with passion,savor the taste of excellence and embark on a delightful journey through our detectable offering.Your culinary adventure begin here - enjoy the feast for yur senses!
             </article>
             <Link href={"/about"} className=' flex items-center bg-purple w-[200px] justify-center text-white py-2 rounded-3xl mt-10'>

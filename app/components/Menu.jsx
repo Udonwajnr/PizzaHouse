@@ -2,8 +2,8 @@ import React from 'react'
 import Link from "next/link"
 const Menu = () => {
   return (
-    <section className=''>
-        <div className='flex flex-col  items-center h-[30vh] py-4 '>
+    <section className='pt-10'>
+        <div className='flex flex-col  items-center h-[30vh] '>
             <h2 className='text-4xl md:text-3xl font-bold'>Our Menu</h2>
             <p className='text-xl font-bold my-5'>Quality Ingredients,Tasty Meals</p>
             <p className='text-sm text-center'>Indulge in out tantalizing menu featuring a symphony of flavours. From savory chicken strips to <br /> delightful kebabs. Our dishes promise a culinary journey that delight the senses.</p>
@@ -21,7 +21,7 @@ const Menu = () => {
                 </div>
 
                 <div>
-                    <img src="pexels-saveurs-secretes-5987010.jpg" alt="img" className='w-[300px]'/>
+                    <img src="cindy-fernandez-iS8oyh-yMcM-unsplash.jpg" alt="img" className=''/>
                 </div>
 
                 <div className='bg-white p-5  md:1 flex flex-col gap-y-5 items-center justify-center border-purple border h-full'>

@@ -1,8 +1,17 @@
+"use client"
 import React from 'react'
 import Link from "next/link"
 import ResponsiveMenu from './ResponsiveMenu'
+import { useState } from 'react'
+
 const Navbar = () => {
-  return (
+const [toggle,setToggle] = useState(false)
+
+const toggleNav = ()=>{
+  setToggle(!toggle)
+} 
+
+return (
     <>
       <header className='px-20 py-3 md:py-1 bg-white md:px-5 shadow-md'>
         <nav className='flex justify-between items-center'>
@@ -44,7 +53,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className='cursor-pointer hidden md:block'>
+          <div className='cursor-pointer hidden md:block' onClick={toggleNav}>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5q-.425 0-.713-.288T3 4q0-.425.288-.713T4 3h16q.425 0 .713.288T21 4q0 .425-.288.713T20 5H4Zm0 16q-.425 0-.713-.288T3 20q0-.425.288-.713T4 19h16q.425 0 .713.288T21 20q0 .425-.288.713T20 21H4Zm0-8q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Z"></path></svg>
             </div>
@@ -53,7 +62,10 @@ const Navbar = () => {
 
         </nav>
       </header>
-      {/* <ResponsiveMenu/> */}
+      {
+        toggle&&
+        <ResponsiveMenu toggleNav={toggleNav} toggle={toggle}/>
+      }
     </>
   )
 }
