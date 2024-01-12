@@ -6,61 +6,58 @@ import CartTotal from '../components/CartTotal'
 const Checkout = () => {
   return (
     <Layout>
-      <section className='px-20 py-10'>
+      <section className='px-20 py-10 md:px-3  md:py-5'>
       {/* checkout details */}
-      <div className='flex gap-x-5 '>
-        <div className='w-8/12'>
+      <div className='flex gap-x-5  md:flex-col'>
+        <div className='w-8/12 md:w-full'>
           <div>
             <div>
               <div className='flex gap-x-4 items-center'>
                 <span className='font-bold'>1.</span>
-                <h3 className='text-3xl'>Contact Information</h3>  
+                <h3 className='text-3xl md:text-lg'>Contact Information</h3>  
               </div>
               <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
-                <p className='mt-1'>We'll use this email to send you details and update you about your order</p>
-                <input placeholder='Email Address' className='h-9 border mt-2 px-3 rounded-md'/>
+                <p className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</p>
+                <input placeholder='Email Address' className='h-9 md:h-6 md:text-sm border mt-2 px-3 rounded-md'/>
               </div>
             </div>  
 
             <div>
               <div className='flex gap-x-4 items-center'>
                 <span className='font-bold'>2.</span>
-                <h3 className='text-3xl'>Shipping Address</h3>  
+                <h3 className='text-3xl md:text-lg'>Shipping Address</h3>  
               </div>
 
               <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
-                <label>We'll use this email to send you details and update you about your order</label>
+                <label className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</label>
                 <div>
                   <div className='flex gap-x-3'>
-                    <input placeholder='First Name' className='h-9 border mt-5 w-full rounded-md px-3'/>
-                    <input placeholder='Last Name' className='h-9 border mt-5 w-full rounded-md px-3'/>
+                    <input placeholder='First Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
+                    <input placeholder='Last Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
                   </div>
 
                   <div>
-                    <input placeholder='Address' className='h-9 border mt-5 w-full px-3'/>
+                    <input placeholder='Address' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
                   <div>
-                    <input placeholder='Apartment' className='h-9 border mt-5 w-full px-3'/>
+                    <input placeholder='Apartment' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
                   {/* might change to select */}
                   <div className='flex gap-x-4'>
-                    <input placeholder='Country/Region' className='h-9 border mt-5 w-full px-3'/>
-                    <input placeholder="Postal Code" className='h-9 border mt-5 w-full px-3'/>
+                    <input placeholder='Country/Region' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder="Postal Code" className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
               {/* might change some of the things here */}
                   <div className='flex gap-4'>
-                    <input placeholder='City' className='h-9 border mt-5 w-full px-3'/>
-                    <input placeholder='Province' className='h-9 border mt-5 w-full px-3'/>
+                    <input placeholder='City' className='h-9 border md:h-6 md:text-sm mt-5 w-full px-3'/>
+                    <input placeholder='Province' className='h-9  md:h-6  md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
                   <div>
-                    <input placeholder='Phone Number' className='h-9 border mt-5 w-full px-3'/>
+                    <input placeholder='Phone Number' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
-
-
-
                 </div>
               </div>
             </div>  
@@ -68,13 +65,13 @@ const Checkout = () => {
             <div>
               <div className='flex gap-x-4 items-center'>
                 <span className='font-bold'>3.</span>
-                <span className='text-3xl'>Payment Option</span>  
+                <span className='text-3xl md:text-lg'>Payment Option</span>  
               </div>
               <div className=' border-l-2 border-gray-300 flex flex-col px-3 my-4 py-2 gap-y-3'>
                           {/* takes to the payment gate way we will be using stripe  */}
                           {/* if the form is not complete remove disable the payment button */}
-                <button className='bg-purple text-white py-2 px-4 rounded-xl'>Payment on Deliver</button>
-                <button className='bg-black text-white py-2 px-4 rounded-xl'>Payment Gateway</button>
+                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'>Payment on Deliver</button>
+                <button className='bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'>Payment Gateway</button>
               </div>
             </div>  
           </div>  
@@ -82,7 +79,7 @@ const Checkout = () => {
         </div>
 
         {/*summary  */}
-        <div className='w-4/12'>
+        <div className='w-4/12 md:w-full'>
           <div>
             <h3>Order Summary</h3>
             <div>
@@ -133,14 +130,14 @@ const Checkout = () => {
               
               {/* Total */}
               <div className='bg-[#ede7f7] py-5 px-5 mt-4'>
-                <h2 className='mb-5 text-3xl'>Cart totals</h2>
-                <div className=''>
+                <h2 className='mb-5 text-3xl md:text-lg'>Cart totals</h2>
+                <div className='md:text-sm'>
                     <div className='flex justify-between'>
-                        <span className='text-lg'>SubTotal: </span>
+                        <span className='text-lg md:text-base'>SubTotal: </span>
                         <span>300$</span>
                     </div>
                     <div className='flex justify-between mt-2'>
-                        <span className='text-lg'>Tax:</span>
+                        <span className='text-lg md:text-base'>Tax:</span>
                         <span>2.99$</span>
                     </div>
                 </div>

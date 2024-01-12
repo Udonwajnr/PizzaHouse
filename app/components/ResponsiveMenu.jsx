@@ -14,19 +14,19 @@ const ResponsiveMenu = ({toggleNav}) => {
         <div className='flex flex-col gap-y-5 items-start'>
           <ul className='flex gap-y-5 flex-col '>
             <li>
-              <Link href="/" className='hover:text-purple hover:duration-200 duration-200 transition text-2xl'>Home</Link>
+              <Link href="/" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Home</Link>
             </li>
 
             <li>
-              <Link href="/menu" className='hover:text-purple hover:duration-200 duration-200 transition text-2xl'>Menu</Link>
+              <Link href="/menu" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Menu</Link>
             </li>
 
             <li>
-              <Link href="/about" className='hover:text-purple hover:duration-200 duration-200 transition text-2xl'>About Us</Link>
+              <Link href="/about" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>About Us</Link>
             </li>
 
             <li>
-              <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition text-2xl'>Contact Us</Link>
+              <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Contact Us</Link>
             </li>
           </ul>
 

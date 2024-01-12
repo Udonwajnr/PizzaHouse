@@ -17,7 +17,7 @@ return (
         <nav className='flex justify-between items-center'>
           <div>
             <Link href={"/"}>
-              <img src="pizzalogo.png" alt="logo" className='w-16 h-16'/>
+              <img src="pizzalogo.png" alt="logo" className=' md:w-10 md:h-10 w-16 h-16'/>
             </Link>
           </div>
 
@@ -55,7 +55,7 @@ return (
 
           <div className='cursor-pointer hidden md:block' onClick={toggleNav}>
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5q-.425 0-.713-.288T3 4q0-.425.288-.713T4 3h16q.425 0 .713.288T21 4q0 .425-.288.713T20 5H4Zm0 16q-.425 0-.713-.288T3 20q0-.425.288-.713T4 19h16q.425 0 .713.288T21 20q0 .425-.288.713T20 21H4Zm0-8q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5q-.425 0-.713-.288T3 4q0-.425.288-.713T4 3h16q.425 0 .713.288T21 4q0 .425-.288.713T20 5H4Zm0 16q-.425 0-.713-.288T3 20q0-.425.288-.713T4 19h16q.425 0 .713.288T21 20q0 .425-.288.713T20 21H4Zm0-8q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Z"></path></svg>
             </div>
 
           </div>

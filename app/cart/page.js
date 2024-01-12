@@ -6,11 +6,11 @@ import CartTotal from '../components/CartTotal'
 const Cart = () => {
   return (
     <Layout>
-        <section className='px-20 justify-between flex gap-x-5'>
-          <div className='w-8/12'>
+        <section className='px-20 md:px-3 py-5 justify-between flex flex-wrap gap-x-5'>
+          <div className='w-8/12 md:w-full'>
             <div className='flex justify-between'>
-                <h4 className='text-2xl'>Products</h4>
-                <h4 className='text-2xl'>Total</h4>
+                <h4 className='text-2xl md:text-lg'>Products</h4>
+                <h4 className='text-2xl md:text-lg'>Total</h4>
             </div>
 
             <div className='mt-4'>
@@ -21,7 +21,7 @@ const Cart = () => {
             </div>
           </div>
 
-          <div className='w-3/12'>
+          <div className='w-3/12 md:w-full'>
             <CartTotal/>
           </div>          
 
