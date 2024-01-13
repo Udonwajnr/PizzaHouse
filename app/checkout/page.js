@@ -95,7 +95,7 @@ const Checkout = () => {
                       <div className='flex flex-col gap-y-2'>                
                               <span className='text-purple text-sm'>Burger</span>
                               <span className='text-xs'>2.50$</span>
-                          <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p>
+                          {/* <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p> */}
                           
                       </div>
                   </div>
@@ -116,8 +116,7 @@ const Checkout = () => {
                       <div className='flex flex-col gap-y-2'>                
                               <span className='text-purple text-sm'>Burger</span>
                               <span className='text-xs'>2.50$</span>
-                          <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p>
-                          
+                          {/* <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p> */}
                       </div>
                   </div>
               </div>
@@ -142,11 +141,9 @@ const Checkout = () => {
                     </div>
                 </div>
                 </div>
-
             </div>
           </div>
         </div>
-
       </div>
       </section>
     </Layout>

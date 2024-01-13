@@ -4,11 +4,11 @@ import Link from 'next/link'
 const ResponsiveMenu = ({toggleNav}) => {
   
   return (
-    <header className='w-full h-screen fixed z-20 top-0 responsive-menu  justify-end hidden md:flex'>
+    <header className='w-full h-screen fixed z-20 top-0 responsive-menu  justify-end hidden md:flex' onClick={toggleNav}>
       <nav className='flex gap-y-5 flex-col justify-between w-full max-w-[300px] bg-white h-screen py-10 px-4'>
         
           <div className='absolute right-4 top-2 cursor-pointer' onClick={toggleNav}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path></svg>
             </div>
         
         <div className='flex flex-col gap-y-5 items-start'>
