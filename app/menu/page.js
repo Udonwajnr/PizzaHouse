@@ -35,9 +35,9 @@ const MainMenu = () => {
             <div>
               <div className='flex flex-wrap gap-5 justify-around items-center md:items-center py-10'>
                 {
-                  menu.map((menu)=>{
+                  menu.map((menu,index)=>{
                     return(
-                      <CardMenu title={menu.name} category={'Soft Drinks'} img={menu.image} price={menu.price}/>        
+                      <CardMenu key={index} title={menu.name} category={'Soft Drinks'} img={menu.image} price={menu.price}/>        
                     )
                   })
                 }
