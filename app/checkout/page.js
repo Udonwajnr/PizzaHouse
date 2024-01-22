@@ -86,7 +86,7 @@ const Checkout = () => {
               <div>
                 <div className='flex justify-between border-t border-b'>
                   <div className='flex items-center p-4 gap-x-4 '>
-                  <div className='max-w-20 relative'>
+                  <div className='max-w-16 relative'>
                       <img src="pngwing.com.png" alt="" />
                       <div className='border bg-purple text-white font-bold w-7 h-7 absolute flex justify-center items-center rounded-full right-0 text-sm -top-4'>1</div>
                   </div>
@@ -107,7 +107,7 @@ const Checkout = () => {
 
                 <div className='flex justify-between border-t border-b'>
                   <div className='flex items-center p-4 gap-x-4 '>
-                  <div className='max-w-20 relative'>
+                  <div className='max-w-16 relative'>
                       <img src="pngwing.com.png" alt="" />
                       <div className='border bg-purple text-white font-bold w-7 h-7 absolute flex justify-center items-center rounded-full top-0 right-0 text-sm -top-4'>1</div>
                   </div>

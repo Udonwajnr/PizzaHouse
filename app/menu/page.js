@@ -1,8 +1,28 @@
+"use client"
 import React from 'react'
 import Layout from '../components/Layout'
 import CardMenu from '../components/MenuCard'
+import axios  from 'axios'
+import { useEffect,useState } from 'react'
 
 const MainMenu = () => {
+  const [menu,setMenu] =useState([])
+  const getMenu =async()=>{
+    try{
+      axios.get("https://pizzahouseapi.onrender.com/api/menu")
+      .then((data)=>{
+        setMenu(data.data)
+      })  
+    }
+    catch(err){
+        console.log(err)
+    }
+  }
+  useEffect(()=>{
+    getMenu()
+  },[])
+
+  console.log(menu)
   return (
     <Layout>
       <section className='px-20 md:px-3 py-10 md:py-5 bg-[#f3f1f6]'>
@@ -14,21 +34,14 @@ const MainMenu = () => {
             </div>
             <div>
               <div className='flex flex-wrap gap-5 justify-around items-center md:items-center py-10'>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-              <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
-                <CardMenu title={"1 Liter Drinks"} category={'Soft Drinks'} img={'klipartz.com.png'} price={"3.00$"}/>
+                {
+                  menu.map((menu)=>{
+                    return(
+                      <CardMenu title={menu.name} category={'Soft Drinks'} img={menu.image} price={menu.price}/>        
+                    )
+                  })
+                }
+                 {/* <CardMenu title={menu.name} category={'Soft Drinks'} img={"https://res.cloudinary.com/djwombdbg/image/upload/v1661506712/cld-sample-4.jpg"} price={menu.price}/> */}
               </div>
             {/* pagination */}
             
