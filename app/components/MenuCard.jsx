@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from "next/link"
-const MenuCard = ({title,category,price,img}) => {
+const MenuCard = ({title,category,price,img,id}) => {
   return (
-    <Link href={'/detail'}>
+    <Link href={`menu/detail/${id}`}>
       <div className='max-w-[350px] '>
           <div className='flex justify-center items-center w-full h-96'>
               <img src={img} alt="" className='w-full h-full' />
@@ -13,7 +13,6 @@ const MenuCard = ({title,category,price,img}) => {
               <span className='md:text-sm'>${price}</span>
               <button className='bg-purple text-white py-2 px-4 rounded-xl mt-3 text-center md:text-sm md:py-1 md:px-3 md:rounded-md'>Add to Cart</button>
           </div>
-
       </div>
     </Link>
   )

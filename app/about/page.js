@@ -7,7 +7,7 @@ import Review from '../components/Review'
 const AboutUs = () => {
   return (
     <Layout>
-        <div className='h-[50vh] about-hero flex items-center px-20'>
+        <div className='h] about-hero flex items-center px-20'>
             <h1 className='text-white text-6xl'>About US</h1>
         </div>
         <main>

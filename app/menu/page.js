@@ -5,6 +5,7 @@ import CardMenu from '../components/MenuCard'
 import axios  from 'axios'
 import { useEffect,useState } from 'react'
 
+
 const MainMenu = () => {
   const [menu,setMenu] =useState([])
   const getMenu =async()=>{
@@ -13,6 +14,9 @@ const MainMenu = () => {
       .then((data)=>{
         setMenu(data.data)
       })  
+      .catch((err)=>{
+        console.log("error")
+      })
     }
     catch(err){
         console.log(err)
@@ -37,7 +41,7 @@ const MainMenu = () => {
                 {
                   menu.map((menu,index)=>{
                     return(
-                      <CardMenu key={index} title={menu.name} category={'Soft Drinks'} img={menu.image} price={menu.price}/>        
+                      <CardMenu key={index} id={menu._id} title={menu.name} category={menu?.category?.name} img={menu.image} price={menu.price}/>        
                     )
                   })
                 }

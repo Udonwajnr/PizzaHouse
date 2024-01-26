@@ -1,9 +1,9 @@
 import React from 'react'
 
-const MenuDetailImage = () => {
+const MenuDetailImage = ({image}) => {
   return (
     <div >
-        <img src="pngwing.com.png" alt="img" />
+        <img src={image} alt="img" />
     </div>
   )
 }
