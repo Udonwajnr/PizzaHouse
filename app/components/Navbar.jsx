@@ -16,7 +16,7 @@ return (
         <nav className='flex justify-between items-center'>
           <div>
             <Link href={"/"}>
-              <img src={"pizzalogo.png"} alt="logo" className=' md:w-10 md:h-10 w-16 h-16'/>
+              <img src={"/pizzalogo.png"} alt="logo" className=' md:w-10 md:h-10 w-16 h-16'/>
             </Link>
           </div>
 

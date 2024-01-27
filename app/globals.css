@@ -123,3 +123,11 @@ img{
   
   
 }
+
+
+/* skeleton card */
+.skeleton_cards{
+  width: 100%;
+  max-width: 400px;
+  margin: 20px 0;
+}

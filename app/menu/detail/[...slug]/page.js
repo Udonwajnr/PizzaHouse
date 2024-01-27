@@ -17,8 +17,9 @@ const MenuDetailsSection = ({params}) => {
   const [menuData,setMenuData] = useState([])
   const [error,setError] = useState(false)
   
+  const {slug} = params
   const getMenuDetail=()=>{        
-   const data = axios.get(`https://pizzahouseapi.onrender.com/api/menu/${params.slug}`)
+   const data = axios.get(`https://pizzahouseapi.onrender.com/api/menu/${slug}`)
         .then((data)=>{
           setLoading(false)
           setMenuDetails(data.data)
@@ -29,7 +30,7 @@ const MenuDetailsSection = ({params}) => {
         })
 
       if(menuDetails.length === 0){
-        return 
+        console.log("invalid")
       }
   } 
 
@@ -48,7 +49,8 @@ const MenuDetailsSection = ({params}) => {
 
   useEffect(()=>{
       getMenuDetail()
-  },[])
+      getMenuData()
+  },[slug])
   return (
     <Layout>
       {
@@ -61,7 +63,7 @@ const MenuDetailsSection = ({params}) => {
                 <MenuDetailImage image={menuDetails.image}/>
               </div>
               <div className='w-7/12 md:w-full'>
-                <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.title} description={menuDetails?.description} price={menuDetails.price}/>
+                <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.name} description={menuDetails?.description} price={menuDetails.price}/>
             </div>
             </div>
         :
@@ -75,16 +77,12 @@ const MenuDetailsSection = ({params}) => {
                 {/* <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.title} description={menuDetails?.description} price={menuDetails.price}/> */}
             </div>
             </div>
-      }
-      {/* {
-
-        menuData.filter((data)=>data.category.name === menuDetails.category.name).map((data)=>{
-              return(
-                <RelatedFood/>
-              )
-        })
-      } */}
+      }        
+              <RelatedFood menuDetails={menuDetails} menuData={menuData}/> 
     </Layout>
   )
     }
+
+    // .filter((data)=>data.category.name === menuDetails.category.name)
+    
 export default MenuDetailsSection

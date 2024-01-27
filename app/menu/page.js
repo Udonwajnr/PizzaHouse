@@ -4,18 +4,23 @@ import Layout from '../components/Layout'
 import CardMenu from '../components/MenuCard'
 import axios  from 'axios'
 import { useEffect,useState } from 'react'
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import SkeletonCard from '../components/SkeletonCard'
 
 const MainMenu = () => {
   const [menu,setMenu] =useState([])
+  const [loading,setLoading] = useState(true)
   const getMenu =async()=>{
     try{
       axios.get("https://pizzahouseapi.onrender.com/api/menu")
       .then((data)=>{
         setMenu(data.data)
+        setLoading(false)
       })  
       .catch((err)=>{
         console.log("error")
+        setLoading(true)
       })
     }
     catch(err){
@@ -38,18 +43,22 @@ const MainMenu = () => {
             </div>
             <div>
               <div className='flex flex-wrap gap-5 justify-around items-center md:items-center py-10'>
+                {loading && <SkeletonCard/>}
                 {
+                  !loading&&
                   menu.map((menu,index)=>{
                     return(
                       <CardMenu key={index} id={menu._id} title={menu.name} category={menu?.category?.name} img={menu.image} price={menu.price}/>        
                     )
-                  })
+                  })                 
                 }
                  {/* <CardMenu title={menu.name} category={'Soft Drinks'} img={"https://res.cloudinary.com/djwombdbg/image/upload/v1661506712/cld-sample-4.jpg"} price={menu.price}/> */}
               </div>
             {/* pagination */}
+             
             
             <div className='flex gap-x-3'>
+
               <div className='border-purple border py-2 px-3 bg-purple text-white font-bold'>1</div>
               <div className='border-purple border py-2 px-3'>2</div>
               <div className='border-purple border py-2 px-3'>3</div>
