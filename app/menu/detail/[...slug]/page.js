@@ -10,13 +10,16 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { redirect } from 'next/navigation';
 import ErrorsPage from '@/error/page'
+import { AuthContext } from '@/app/components/contextApi/context'
+import { useContext } from 'react'
 
 const MenuDetailsSection = ({params}) => {
+  const {isLoadingChange} = useContext(AuthContext)
   const [loading,setLoading] = useState(true)
   const [menuDetails,setMenuDetails] = useState([])
   const [menuData,setMenuData] = useState([])
   const [error,setError] = useState(false)
-  
+    
   const {slug} = params
   const getMenuDetail=()=>{        
    const data = axios.get(`https://pizzahouseapi.onrender.com/api/menu/${slug}`)
