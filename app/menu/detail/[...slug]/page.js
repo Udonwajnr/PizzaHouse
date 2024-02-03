@@ -8,18 +8,16 @@ import axios from 'axios'
 import { useEffect,useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { redirect } from 'next/navigation';
 import ErrorsPage from '@/error/page'
-import { AuthContext } from '@/app/components/contextApi/context'
 import { useContext } from 'react'
+import { AuthContext } from '@/app/components/contextApi/context'
 
 const MenuDetailsSection = ({params}) => {
-  const {isLoadingChange} = useContext(AuthContext)
   const [loading,setLoading] = useState(true)
   const [menuDetails,setMenuDetails] = useState([])
   const [menuData,setMenuData] = useState([])
   const [error,setError] = useState(false)
-    
+  const {increment,decrement,quantity} = useContext(AuthContext)
   const {slug} = params
   const getMenuDetail=()=>{        
    const data = axios.get(`https://pizzahouseapi.onrender.com/api/menu/${slug}`)
@@ -31,10 +29,6 @@ const MenuDetailsSection = ({params}) => {
         .catch((err)=>{
           setError(true)
         })
-
-      if(menuDetails.length === 0){
-        console.log("invalid")
-      }
   } 
 
 
@@ -48,7 +42,6 @@ const MenuDetailsSection = ({params}) => {
           return <>Error</>
         })
       }
-  
 
   useEffect(()=>{
       getMenuDetail()
@@ -56,6 +49,8 @@ const MenuDetailsSection = ({params}) => {
   },[slug])
   return (
     <Layout>
+      <div className='h-[90vh] bg-[#f3f1f6]'>
+
       {
         error?
           <ErrorsPage/> 
@@ -66,7 +61,7 @@ const MenuDetailsSection = ({params}) => {
                 <MenuDetailImage image={menuDetails.image}/>
               </div>
               <div className='w-7/12 md:w-full'>
-                <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.name} description={menuDetails?.description} price={menuDetails.price}/>
+                <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.name} description={menuDetails?.description} price={menuDetails.price} quantity={quantity}/>
             </div>
             </div>
         :
@@ -81,6 +76,7 @@ const MenuDetailsSection = ({params}) => {
             </div>
             </div>
       }        
+       </div>
               <RelatedFood menuDetails={menuDetails} menuData={menuData}/> 
     </Layout>
   )

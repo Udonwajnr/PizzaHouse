@@ -1,9 +1,12 @@
-import React from 'react'
+"use client"
+import React,{useContext} from 'react'
 import Layout from '../components/Layout'
 import CartItems from '../components/CartItems'
 import CartTotal from '../components/CartTotal'
+import { AuthContext } from '../components/contextApi/context'
 
 const Cart = () => {
+  const {getCartTotal} = useContext(AuthContext)
   return (
     <Layout>
         <section className='px-20 md:px-3 py-5 justify-between flex flex-wrap gap-x-5'>

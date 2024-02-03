@@ -1,9 +1,13 @@
+"use client"
 import React from 'react'
 import Layout from '../components/Layout'
 import Link from "next/link"
 import CartTotal from '../components/CartTotal'
+import { AuthContext } from '../components/contextApi/context'
+import { useContext } from 'react'
 
 const Checkout = () => {
+  const {getCartTotal} = useContext(AuthContext)
   return (
     <Layout>
       <section className='px-20 py-10 md:px-3  md:py-5'>
@@ -131,13 +135,15 @@ const Checkout = () => {
               <div className='bg-[#ede7f7] py-5 px-5 mt-4'>
                 <h2 className='mb-5 text-3xl md:text-lg'>Cart totals</h2>
                 <div className='md:text-sm'>
-                    <div className='flex justify-between'>
-                        <span className='text-lg md:text-base'>SubTotal: </span>
-                        <span>300$</span>
-                    </div>
+                    
                     <div className='flex justify-between mt-2'>
                         <span className='text-lg md:text-base'>Tax:</span>
                         <span>2.99$</span>
+                    </div>
+
+                    <div className='flex justify-between'>
+                        <span className='text-lg md:text-base'>SubTotal: </span>
+                        <span>{getCartTotal()}$</span>
                     </div>
                 </div>
                 </div>

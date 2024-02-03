@@ -1,1 +1,6 @@
 alert for successful delivery and so on
+
+add increase and decrease button
+
+
+detail page add quantity to each product and maping them
