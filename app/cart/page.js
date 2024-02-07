@@ -26,7 +26,7 @@ const Cart = () => {
 
                 cartItems.map((items,index)=>{
                   return(
-                      <CartItems key={index} id={items._id} name={items.name} category={items.category.name} price={items.price} image={items.image}/>            
+                      <CartItems items={items} key={index} id={items._id} name={items.name} category={items.category.name} price={items.price} image={items.image}/>            
                   )
                  })
             

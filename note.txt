@@ -12,3 +12,13 @@ if you can write api for shipping
 then pagination
 
 mobile responsiveness
+
+
+fix git issue first
+
+
+things to do next
+
+clear cart
+add local storage and then checkout api
+adding a payment gateway
