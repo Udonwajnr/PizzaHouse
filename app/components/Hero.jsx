@@ -8,7 +8,7 @@ const Hero = () => {
             <img src="download.png" alt="" className='' />
         </div> */}
         <h2 className='text-3xl text-white text-[100px] text-center md:text-[40px]'>Pizza House</h2>
-        <span className='text-xl text-purple text-center font-bold'>Italian Specialties</span>
+        <span className='text-xl text-white text-center font-bold'>Italian Specialties</span>
 
         {/* <div className='flex items-center gap-x-10'>
             <hr className='w-36 border-white border'/>

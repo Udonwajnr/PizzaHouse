@@ -10,7 +10,7 @@ const SkeletonCard = () => {
           </h2> */}
     
           <ul className="list flex flex-wrap justify-between md:justify-center">
-            {Array(9)
+            {Array(12)
               .fill()
               .map((item, index) => (
                 <li className="skeleton_cards max-w-[350px]" key={index}>

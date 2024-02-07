@@ -20,7 +20,7 @@ const MenuCard = ({title,category,price,img,id,menuData,quantity}) => {
               <div>{quantity}</div>
           </div>
     </Link>
-      <button className='bg-purple text-white py-2 px-4 rounded-xl mt-3 text-center md:text-sm md:py-1 md:px-3 md:rounded-md w-full' onClick={()=>addToCart(menuData)}>Add to Cart</button>
+      <button className='bg-purple text-white py-2 px-4 rounded-xl mt-3 text-center md:text-sm md:py-1 md:px-3 md:rounded-md w-full hover:bg-violet-400' onClick={()=>addToCart(menuData)}>Add to Cart</button>
     </div>
   )
 }

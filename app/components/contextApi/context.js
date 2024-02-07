@@ -11,19 +11,19 @@ export const AuthProvider =({children})=>{
     const [loading,setLoading] = useState(true)
     // cart
     const [cartItems,setCartItems] = useState([])
-    const [quantity,setQuantity ]= useState(1)    
-
     const [tax,setTax]= useState(2.99)
+    const [quantity,setQuantity] = useState(1)
+    const [totalCartItems,SetTotalCartItems] = useState(0)
 
-    if(quantity<1){
-        setQuantity(1)
+    if(quantity<0){
+        setQuantity(0)
     }
+
     const getMenuData =async()=>{
         try{
         axios.get("https://pizzahouseapi.onrender.com/api/menu")
       .then((data)=>{
-        setMenu({data,quantity:0})
-        setQuantity(1)
+        setMenu(data.data)
         setLoading(false)
       })  
       .catch((err)=>{
@@ -35,51 +35,43 @@ export const AuthProvider =({children})=>{
             console.log(err)
         }
     }
-    const increment =()=>{
-        return setQuantity(quantity+1)
-    }
-
-    const decrement =()=>{
-        return setQuantity(quantity-1)
-    }
+    
     const addToCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
         if(isItemInCart){
             setCartItems(
-                cartItems.map((cartItem)=>cartItem._id === item._id ? {...cartItem , quantity: cartItem.quantity+quantity } : cartItem)
+                cartItems.map((cartItem)=>cartItem._id === item._id ? {...cartItem , quantity: cartItem.quantity+1 } : cartItem)
             )
         }
+
         else{
             setCartItems(
                 [...cartItems,{...item,quantity:1}]);
         }
     }
-    console.log(menu)
+
     const removeFromCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
-        if(isItemInCart.quantity === 1 ){
+        if(isItemInCart?.quantity === 1 || isItemInCart?.quantity <= 0 ){
             setCartItems(cartItems.filter((cartItem)=>cartItem._id !== item._id)) // if the quantity of the item is 1, remove the item from the cart
         }
 
         else{
             setCartItems(
-                cartItems.map((cartItem)=>cartItem._id === item._id?{...cartItem,quantity:cartItem.quantity - quantity}// if the quantity of the item is greater than 1, decrease the quantity of the item
+                cartItems.map((cartItem)=>cartItem._id === item._id?{...cartItem,quantity:cartItem.quantity - 1}// if the quantity of the item is greater than 1, decrease the quantity of the item
                 :
                 cartItem
-                )
-                
+                )                
             )
         }
     }
-
-console.log(quantity)
 
     const clearCart=()=>{
         setCartItems([])
     }
 
     const getCartTotal =()=>{
-        return cartItems.reduce((total,item)=>(total+item.price * item.quantity)+tax,tax)
+        return cartItems.reduce((total,item)=>(total+item.price * item.quantity)+tax,tax).toFixed(2)
     }
 
     console.log(cartItems)
@@ -87,8 +79,15 @@ console.log(quantity)
     useEffect(()=>{
         getMenuData()
     },[])
+
     // you will be using local storage tooo big man!!!!
 
+    let totalItems = 0
+    cartItems.forEach(items => {
+        totalItems +=items.quantity;
+    });
+
+    console.log(totalItems)
     return(
             <AuthContext.Provider 
             value={{
@@ -99,9 +98,9 @@ console.log(quantity)
                 removeFromCart,
                 clearCart,
                 getCartTotal,
-                quantity,
-                increment,
-                decrement,
+                cartItems,
+                totalCartItems,
+                totalItems
             }}>
                 {children}
             </AuthContext.Provider>          

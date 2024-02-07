@@ -6,7 +6,7 @@ import CartTotal from '../components/CartTotal'
 import { AuthContext } from '../components/contextApi/context'
 
 const Cart = () => {
-  const {getCartTotal} = useContext(AuthContext)
+  const {getCartTotal,cartItems} = useContext(AuthContext)
   return (
     <Layout>
         <section className='px-20 md:px-3 py-5 justify-between flex flex-wrap gap-x-5'>
@@ -17,10 +17,20 @@ const Cart = () => {
             </div>
 
             <div className='mt-4'>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
+
+              {
+                cartItems.length === 0 &&
+                <h1 className='text-4xl font-bold'>Cart is Empty</h1>
+              }
+                {cartItems.length > 0 &&
+
+                cartItems.map((items,index)=>{
+                  return(
+                      <CartItems key={index} id={items._id} name={items.name} category={items.category.name} price={items.price} image={items.image}/>            
+                  )
+                 })
+            
+                }
             </div>
           </div>
 

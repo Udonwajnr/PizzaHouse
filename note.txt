@@ -3,4 +3,12 @@ alert for successful delivery and so on
 add increase and decrease button
 
 
-detail page add quantity to each product and maping them
+detail page add quantity to each product and mapping them
+
+map cart items and local storage for items 
+
+if you can write api for shipping
+
+then pagination
+
+mobile responsiveness

@@ -17,7 +17,7 @@ const MenuDetailsSection = ({params}) => {
   const [menuDetails,setMenuDetails] = useState([])
   const [menuData,setMenuData] = useState([])
   const [error,setError] = useState(false)
-  const {increment,decrement,quantity} = useContext(AuthContext)
+  const {increment,decrement,quantity,cartItems} = useContext(AuthContext)
   const {slug} = params
   const getMenuDetail=()=>{        
    const data = axios.get(`https://pizzahouseapi.onrender.com/api/menu/${slug}`)
@@ -61,7 +61,7 @@ const MenuDetailsSection = ({params}) => {
                 <MenuDetailImage image={menuDetails.image}/>
               </div>
               <div className='w-7/12 md:w-full'>
-                <MenuDetails categoryName={menuDetails?.category?.name} title={menuDetails?.name} description={menuDetails?.description} price={menuDetails.price} quantity={quantity}/>
+                <MenuDetails menuDetails={menuDetails} categoryName={menuDetails?.category?.name} title={menuDetails?.name} description={menuDetails?.description} price={menuDetails.price} quantity={quantity}/>
             </div>
             </div>
         :

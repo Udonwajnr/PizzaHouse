@@ -21,15 +21,15 @@ const MainMenu = () => {
             </div>
             <div>
               <div className='flex flex-wrap gap-5 justify-around items-center md:items-center py-10'>
-                {loading && <SkeletonCard/>}
-                {/* {
+                  {loading && <SkeletonCard/>}
+                {
                   !loading&&
                   menu.map((menu,index)=>{
                     return(
                       <CardMenu key={index} id={menu._id} title={menu.name} category={menu?.category?.name} img={menu.image} price={menu.price} menuData={menu} quantity={menu.quantity}/>        
                     )
                   })                 
-                } */}
+                }
                  {/* <CardMenu title={menu.name} category={'Soft Drinks'} img={"https://res.cloudinary.com/djwombdbg/image/upload/v1661506712/cld-sample-4.jpg"} price={menu.price}/> */}
               </div>
             {/* pagination */}
