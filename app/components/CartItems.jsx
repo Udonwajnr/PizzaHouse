@@ -1,5 +1,6 @@
 import React,{useContext} from 'react'
 import { AuthContext } from './contextApi/context'
+
 const CartItems = ({name,category,price,image,id,items}) => {
   const {addToCart,removeFromCart,cartItems} = useContext(AuthContext)
  return (

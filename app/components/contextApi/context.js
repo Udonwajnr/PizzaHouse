@@ -4,16 +4,20 @@ import axios  from 'axios'
 
 export const AuthContext = createContext();
 
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
+
 export const AuthProvider =({children})=>{
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
     // for menu data
     const [loading,setLoading] = useState(true)
     // cart
-    const [cartItems,setCartItems] = useState([])
+    const [cartItems,setCartItems] = useState(cartFromLocalStorage)
     const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
+    const [test,setTest] = useState([])
+    const [cart, setCart] = useState([]);
 
     if(quantity<0){
         setQuantity(0)
@@ -41,14 +45,32 @@ export const AuthProvider =({children})=>{
         if(isItemInCart){
             setCartItems(
                 cartItems.map((cartItem)=>cartItem._id === item._id ? {...cartItem , quantity: cartItem.quantity+1 } : cartItem)
-            )
-        }
+                )
+          }
 
         else{
             setCartItems(
                 [...cartItems,{...item,quantity:1}]);
         }
+
+        localStorage.setItem("cart",JSON.stringify(cartItems))
     }
+
+    // const addToCart = (item) => {
+    //     const isItemInCart = cartItems.some((cartItem) => cartItem._id === item._id);
+    
+    //     if (isItemInCart) {
+    //       const updatedCart = cartItems.map((cartItem) =>
+    //         cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+    //       );
+    //       setCartItems(updatedCart);
+    //     } else {
+    //       const updatedCart = [...cartItems, { ...item, quantity: 1 }];
+    //       setCartItems(updatedCart);
+    //     }
+    //   };
+
+
 
     const removeFromCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
@@ -74,20 +96,22 @@ export const AuthProvider =({children})=>{
         return cartItems.reduce((total,item)=>(total+item.price * item.quantity)+tax,tax).toFixed(2)
     }
 
-    console.log(cartItems)
-    console.log(cartItems)
     useEffect(()=>{
         getMenuData()
     },[])
 
-    // you will be using local storage tooo big man!!!!
+    useEffect(()=>{
+      localStorage.setItem("cart",JSON.stringify(cartItems))
+    },[cartItems])
+
+
+
 
     let totalItems = 0
-    cartItems.forEach(items => {
+    cartItems?.forEach(items => {
         totalItems +=items.quantity;
     });
 
-    console.log(totalItems)
     return(
             <AuthContext.Provider 
             value={{
