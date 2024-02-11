@@ -1,12 +1,13 @@
 "use client"
 import { useEffect,useState,createContext } from "react";
 import axios  from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
 
 export const AuthContext = createContext();
 
-const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
-
 export const AuthProvider =({children})=>{
+  const cartFromLocalStorage = JSON.parse(window.localStorage.getItem("cart")) || []
+  const notify = () => toast('Item Has been Added to CArt');
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
     // for menu data
@@ -47,13 +48,11 @@ export const AuthProvider =({children})=>{
                 cartItems.map((cartItem)=>cartItem._id === item._id ? {...cartItem , quantity: cartItem.quantity+1 } : cartItem)
                 )
           }
-
         else{
             setCartItems(
                 [...cartItems,{...item,quantity:1}]);
         }
-
-        localStorage.setItem("cart",JSON.stringify(cartItems))
+        notify()
     }
 
     // const addToCart = (item) => {
@@ -93,7 +92,7 @@ export const AuthProvider =({children})=>{
     }
 
     const getCartTotal =()=>{
-        return cartItems.reduce((total,item)=>(total+item.price * item.quantity)+tax,tax).toFixed(2)
+        return cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
     }
 
     useEffect(()=>{
@@ -101,7 +100,7 @@ export const AuthProvider =({children})=>{
     },[])
 
     useEffect(()=>{
-      localStorage.setItem("cart",JSON.stringify(cartItems))
+     window.localStorage.setItem("cart",JSON.stringify(cartItems))
     },[cartItems])
 
 

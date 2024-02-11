@@ -5,13 +5,23 @@ import CardMenu from '../components/MenuCard'
 import 'react-loading-skeleton/dist/skeleton.css'
 import SkeletonCard from '../components/SkeletonCard'
 import { AuthContext } from '../components/contextApi/context'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const MainMenu = () => {
-  const {menu,loading,addToCart} = useContext(AuthContext)
-
+  const {menu,loading} = useContext(AuthContext)
   return (
     <Layout>
+        <Toaster
+          toastOptions={{
+            style: {
+              border: '',
+              padding: '16px',
+              color: 'white',
+              backgroundColor:'#52b963'
+            }  
+          }}
+        />
       <section className='px-20 md:px-3 py-10 md:py-5 bg-[#f3f1f6]'>
           <div><h1 className='text-4xl md:text-xl'>Main Menu</h1></div>
           <div className=''>
@@ -30,7 +40,6 @@ const MainMenu = () => {
                     )
                   })                 
                 }
-                 {/* <CardMenu title={menu.name} category={'Soft Drinks'} img={"https://res.cloudinary.com/djwombdbg/image/upload/v1661506712/cld-sample-4.jpg"} price={menu.price}/> */}
               </div>
             {/* pagination */}
              

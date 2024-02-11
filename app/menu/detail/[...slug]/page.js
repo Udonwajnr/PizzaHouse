@@ -11,6 +11,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import ErrorsPage from '@/error/page'
 import { useContext } from 'react'
 import { AuthContext } from '@/app/components/contextApi/context'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const MenuDetailsSection = ({params}) => {
   const [loading,setLoading] = useState(true)
@@ -49,6 +51,17 @@ const MenuDetailsSection = ({params}) => {
   },[slug])
   return (
     <Layout>
+        <Toaster
+             toastOptions={{
+              style: {
+                border: '1px solid #713200',
+                padding: '16px',
+                color: 'white',
+                backgroundColor:'#52b963'
+              }  
+            }}
+        />
+
       <div className='h-[90vh] bg-[#f3f1f6]'>
 
       {

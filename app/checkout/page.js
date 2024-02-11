@@ -136,10 +136,10 @@ const Checkout = () => {
                 <h2 className='mb-5 text-3xl md:text-lg'>Cart totals</h2>
                 <div className='md:text-sm'>
                     
-                    <div className='flex justify-between mt-2'>
+                    {/* <div className='flex justify-between mt-2'>
                         <span className='text-lg md:text-base'>Tax:</span>
                         <span>2.99$</span>
-                    </div>
+                    </div> */}
 
                     <div className='flex justify-between'>
                         <span className='text-lg md:text-base'>SubTotal: </span>
