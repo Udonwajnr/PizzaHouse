@@ -6,14 +6,14 @@ import toast, { Toaster } from 'react-hot-toast';
 export const AuthContext = createContext();
 
 export const AuthProvider =({children})=>{
-  const cartFromLocalStorage = JSON.parse(window.localStorage.getItem("cart")) || []
-  const notify = () => toast('Item Has been Added to CArt');
+    const notify = () => toast('Item Has been Added to CArt');
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
+    const[storage,setStorage] = useState([])
     // for menu data
     const [loading,setLoading] = useState(true)
     // cart
-    const [cartItems,setCartItems] = useState(cartFromLocalStorage)
+    const [cartItems,setCartItems] = useState(storage)
     const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
@@ -102,6 +102,11 @@ export const AuthProvider =({children})=>{
     useEffect(()=>{
      window.localStorage.setItem("cart",JSON.stringify(cartItems))
     },[cartItems])
+
+    useEffect(() => {
+      const cartFromLocalStorage = window !==undefined&&JSON.parse(window?.localStorage?.getItem("cart")) || []
+      setStorage(cartFromLocalStorage)    
+    }, []);
 
 
 
