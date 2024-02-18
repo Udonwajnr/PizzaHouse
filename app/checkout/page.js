@@ -7,7 +7,7 @@ import { AuthContext } from '../components/contextApi/context'
 import { useContext } from 'react'
 
 const Checkout = () => {
-  const {getCartTotal} = useContext(AuthContext)
+  const {getCartTotal,cartItems} = useContext(AuthContext)
   return (
     <Layout>
       <section className='px-20 py-10 md:px-3  md:py-5'>
@@ -87,48 +87,33 @@ const Checkout = () => {
           <div>
             <h3>Order Summary</h3>
             <div>
-              <div>
-                <div className='flex justify-between border-t border-b'>
-                  <div className='flex items-center p-4 gap-x-4 '>
-                  <div className='max-w-16 relative'>
-                      <img src="pngwing.com.png" alt="" />
-                      <div className='border bg-purple text-white font-bold w-7 h-7 absolute flex justify-center items-center rounded-full right-0 text-sm -top-4'>1</div>
-                  </div>
-                  
-                  <div>
-                      <div className='flex flex-col gap-y-2'>                
-                              <span className='text-purple text-sm'>Burger</span>
-                              <span className='text-xs'>2.50$</span>
-                          {/* <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p> */}
-                          
+              <div className='overflow-y-scroll h-[600px] px-5 lg:px-2'>
+              {
+                cartItems.map((item,index)=>{
+                  return(
+                    <div key={index} className='flex justify-between border-t border-b'>
+                      <div className='flex items-center p-4 gap-x-4 '>
+                      <div className='max-w-16 relative'>
+                          <img src={item.image} alt="" />
+                          <div className='border bg-purple text-white font-bold w-7 h-7 absolute flex justify-center items-center rounded-full right-0 text-sm -top-4'>{item.quantity}</div>
                       </div>
-                  </div>
-              </div>
-          <div className='py-4'>
-              <span className='text-xs'>3.50$</span>
-          </div>
-                </div>
-
-                <div className='flex justify-between border-t border-b'>
-                  <div className='flex items-center p-4 gap-x-4 '>
-                  <div className='max-w-16 relative'>
-                      <img src="pngwing.com.png" alt="" />
-                      <div className='border bg-purple text-white font-bold w-7 h-7 absolute flex justify-center items-center rounded-full top-0 right-0 text-sm -top-4'>1</div>
-                  </div>
-                  
-                  <div>
-                      <div className='flex flex-col gap-y-2'>                
-                              <span className='text-purple text-sm'>Burger</span>
-                              <span className='text-xs'>2.50$</span>
-                          {/* <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p> */}
+                      
+                      <div>
+                          <div className='flex flex-col gap-y-2'>                
+                                  <span className='text-purple text-sm'>{item.category.name}</span>
+                                  <span className='text-xs'>${item.price}</span>
+                              {/* <p className='text-[#81748b] text-xs'>A classic burger with a seasoned beef patty,lettuce,tomato, and cheddar cheese, providing a timeless and hearty meal option.</p> */}
+                              
+                          </div>
                       </div>
-                  </div>
-              </div>
-          <div className='py-4'>
-              <span className='text-xs'>3.50$</span>
-          </div>
-                </div>
-
+                    </div>
+                      <div className='py-4'>
+                          <span className='text-xs'>${item.price * item.quantity}</span>
+                      </div>
+                    </div>
+                  )
+                })
+              }
               </div>
               
               {/* Total */}

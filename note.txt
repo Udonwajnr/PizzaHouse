@@ -22,3 +22,14 @@ things to do next
 clear cart
 add local storage and then checkout api
 adding a payment gateway
+
+
+////
+checkout real data
+full user authentication
+shipping api
+stripe integration
+
+
+the reduce function is throwing an error
+it's either we make the total

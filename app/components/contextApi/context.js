@@ -6,14 +6,26 @@ import toast, { Toaster } from 'react-hot-toast';
 export const AuthContext = createContext();
 
 export const AuthProvider =({children})=>{
-    const notify = () => toast('Item Has been Added to CArt');
+    // const [local,setLocal] = useState(() => {
+    //     try{
+    //         if (typeof window !== "undefined") {
+    //             const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+    //             return cartFromLocalStorage || [];
+    //         }
+    //     } catch(error){
+    //         console.log(error)
+    //     }
+        
+    // });
+    const notify = () => toast('Item Has been Added to Cart');
+    
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
     const[storage,setStorage] = useState([])
     // for menu data
     const [loading,setLoading] = useState(true)
     // cart
-    const [cartItems,setCartItems] = useState(storage)
+    const [cartItems,setCartItems] = useState([])
     const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
@@ -26,7 +38,7 @@ export const AuthProvider =({children})=>{
 
     const getMenuData =async()=>{
         try{
-        axios.get("https://pizzahouseapi.onrender.com/api/menu")
+      await axios.get("https://pizzahouseapi.onrender.com/api/menu")
       .then((data)=>{
         setMenu(data.data)
         setLoading(false)
@@ -55,22 +67,6 @@ export const AuthProvider =({children})=>{
         notify()
     }
 
-    // const addToCart = (item) => {
-    //     const isItemInCart = cartItems.some((cartItem) => cartItem._id === item._id);
-    
-    //     if (isItemInCart) {
-    //       const updatedCart = cartItems.map((cartItem) =>
-    //         cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
-    //       );
-    //       setCartItems(updatedCart);
-    //     } else {
-    //       const updatedCart = [...cartItems, { ...item, quantity: 1 }];
-    //       setCartItems(updatedCart);
-    //     }
-    //   };
-
-
-
     const removeFromCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
         if(isItemInCart?.quantity === 1 || isItemInCart?.quantity <= 0 ){
@@ -92,24 +88,16 @@ export const AuthProvider =({children})=>{
     }
 
     const getCartTotal =()=>{
-        return cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
+        return  cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
     }
 
     useEffect(()=>{
         getMenuData()
-    },[])
+    },[]) 
 
     useEffect(()=>{
-     window.localStorage.setItem("cart",JSON.stringify(cartItems))
+     localStorage.setItem("cart",JSON.stringify(cartItems))
     },[cartItems])
-
-    useEffect(() => {
-      const cartFromLocalStorage = window !==undefined&&JSON.parse(window?.localStorage?.getItem("cart")) || []
-      setStorage(cartFromLocalStorage)    
-    }, []);
-
-
-
 
     let totalItems = 0
     cartItems?.forEach(items => {
