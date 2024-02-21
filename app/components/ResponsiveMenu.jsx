@@ -31,6 +31,14 @@ const ResponsiveMenu = ({toggleNav}) => {
             <li>
               <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Contact Us</Link>
             </li>
+
+              <li>
+                  <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Register</Link>
+                </li>
+                
+                <li>
+                  <Link href="/login" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Login</Link>
+                </li>
           </ul>
 
           <div className='flex items-center gap-x-3 '>

@@ -11,7 +11,6 @@ const {totalCartItems,totalItems,getCartTotal} = useContext(AuthContext)
 const toggleNav = ()=>{
   setToggle(!toggle)
 } 
-
 return (
     <>
       <header className='px-20 py-3 md:py-1 bg-white md:px-5 shadow-md'>
@@ -39,6 +38,13 @@ return (
               <li>
                 <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition'>Contact Us</Link>
               </li>
+                <li>
+                  <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition'>Register</Link>
+                </li>
+                
+                <li>
+                  <Link href="/login" className='hover:text-purple hover:duration-200 duration-200 transition'>Login</Link>
+                </li>
             </ul>
 
             <div className='flex items-center gap-x-3'>
