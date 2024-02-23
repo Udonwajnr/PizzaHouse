@@ -7,7 +7,6 @@ import SkeletonCard from '../components/SkeletonCard'
 import { AuthContext } from '../components/contextApi/context'
 import toast, { Toaster } from 'react-hot-toast';
 
-
 const MainMenu = () => {
   const {menu,loading} = useContext(AuthContext)
   return (

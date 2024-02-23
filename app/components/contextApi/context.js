@@ -2,6 +2,7 @@
 import { useEffect,useState,createContext } from "react";
 import axios  from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export const AuthContext = createContext();
 
@@ -15,9 +16,9 @@ export const AuthProvider =({children})=>{
     //     } catch(error){
     //         console.log(error)
     //     }
-        
+
     // });
-    const notify = () => toast('Item Has been Added to Cart');
+    const notify = () => toast('Item Has been Added to Cart',{duration:1000});
     
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
@@ -31,10 +32,40 @@ export const AuthProvider =({children})=>{
     const [totalCartItems,SetTotalCartItems] = useState(0)
     const [test,setTest] = useState([])
     const [cart, setCart] = useState([]);
+    const [user,setUser] = useState([])
+    const [username,setUserName] = useState("")
+    const [password,setPassword] = useState("")
+    const { push } = useRouter();
 
+    console.log(user)
+ 
     if(quantity<0){
         setQuantity(0)
     }
+    
+    const loginForm =async(e)=>{
+        e.preventDefault()
+        const data = {username,password}
+            await axios.post("https://pizzahouseapi.onrender.com/api/user/login",data)
+            .then((data)=>{
+                console.log(data.data?.user)
+                localStorage.setItem("user",JSON.stringify(data.data?.user))
+                window.location.href = "/"
+                // setUser(saveLogin)
+                console.log("Successful")
+            })
+            .catch((error)=>{
+              alert("Invalid details")
+                console.log(error)
+            })
+      }
+
+      useEffect(() => {
+        let value
+        // Get the value from local storage if it exists
+        value = JSON.parse(localStorage.getItem("user") || "[]")
+        setUser(value)
+      }, [])
 
     const getMenuData =async()=>{
         try{
@@ -91,6 +122,8 @@ export const AuthProvider =({children})=>{
         return  cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
     }
 
+
+
     useEffect(()=>{
         getMenuData()
     },[]) 
@@ -116,7 +149,14 @@ export const AuthProvider =({children})=>{
                 getCartTotal,
                 cartItems,
                 totalCartItems,
-                totalItems
+                totalItems,
+                setUser,
+                user,
+                loginForm,
+                username,
+                setUserName,
+                password,
+                setPassword
             }}>
                 {children}
             </AuthContext.Provider>          

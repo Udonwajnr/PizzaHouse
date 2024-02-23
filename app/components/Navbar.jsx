@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import { AuthContext } from './contextApi/context'
 const Navbar = () => {
 const [toggle,setToggle] = useState(false)
-const {totalCartItems,totalItems,getCartTotal} = useContext(AuthContext)
+const {totalCartItems,totalItems,getCartTotal,user} = useContext(AuthContext)
 const toggleNav = ()=>{
   setToggle(!toggle)
 } 
@@ -38,13 +38,23 @@ return (
               <li>
                 <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition'>Contact Us</Link>
               </li>
-                <li>
-                  <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition'>Register</Link>
-                </li>
-                
-                <li>
-                  <Link href="/login" className='hover:text-purple hover:duration-200 duration-200 transition'>Login</Link>
-                </li>
+              {
+                user?.length === 0 ?
+                <>
+                  <li>
+                    <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition'>Register</Link>
+                  </li>
+                  
+                  <li>
+                    <Link href="/login" className='hover:text-purple hover:duration-200 duration-200 transition'>Login</Link>
+                  </li>
+                </>
+                :
+                <>
+                  <h2 className="font-bold bg-purple text-white px-1 rounded-md">{user?.username}</h2>
+                </>
+              }
+              
             </ul>
 
             <div className='flex items-center gap-x-3'>
