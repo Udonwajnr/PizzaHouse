@@ -33,3 +33,5 @@ stripe integration
 
 the reduce function is throwing an error
 it's either we make the total
+
+add to cart local storage

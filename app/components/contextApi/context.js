@@ -6,18 +6,10 @@ import { useRouter } from 'next/navigation';
 
 export const AuthContext = createContext();
 
+    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")|| "[]")
 export const AuthProvider =({children})=>{
-    // const [local,setLocal] = useState(() => {
-    //     try{
-    //         if (typeof window !== "undefined") {
-    //             const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
-    //             return cartFromLocalStorage || [];
-    //         }
-    //     } catch(error){
-    //         console.log(error)
-    //     }
+    const initialState = []
 
-    // });
     const notify = () => toast('Item Has been Added to Cart',{duration:1000});
     
     const [isLoading,setIsLoading] = useState(false)   
@@ -26,19 +18,14 @@ export const AuthProvider =({children})=>{
     // for menu data
     const [loading,setLoading] = useState(true)
     // cart
-    const [cartItems,setCartItems] = useState([])
+    const [cartItems,setCartItems] = useState(cartFromLocalStorage)
     const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
-    const [test,setTest] = useState([])
-    const [cart, setCart] = useState([]);
     const [user,setUser] = useState([])
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
-    const { push } = useRouter();
 
-    console.log(user)
- 
     if(quantity<0){
         setQuantity(0)
     }
@@ -87,14 +74,14 @@ export const AuthProvider =({children})=>{
     const addToCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
         if(isItemInCart){
-            setCartItems(
+         setCartItems(
                 cartItems.map((cartItem)=>cartItem._id === item._id ? {...cartItem , quantity: cartItem.quantity+1 } : cartItem)
                 )
-          }
+            }
         else{
             setCartItems(
                 [...cartItems,{...item,quantity:1}]);
-        }
+            }
         notify()
     }
 
@@ -122,14 +109,20 @@ export const AuthProvider =({children})=>{
         return  cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
     }
 
-
-
     useEffect(()=>{
         getMenuData()
     },[]) 
 
     useEffect(()=>{
-     localStorage.setItem("cart",JSON.stringify(cartItems))
+        const cartData = JSON.parse(localStorage.getItem("cart"))
+        if(cartData){
+            setCartItems(cartData)
+        }
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
     },[cartItems])
 
     let totalItems = 0
