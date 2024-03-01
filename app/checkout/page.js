@@ -44,21 +44,13 @@ const Checkout = () => {
                     <input placeholder='Address' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
-                  <div>
-                    <input placeholder='Apartment' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
-                  </div>
-
                   {/* might change to select */}
                   <div className='flex gap-x-4'>
                     <input placeholder='Country/Region' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                     <input placeholder="Postal Code" className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
               {/* might change some of the things here */}
-                  <div className='flex gap-4'>
-                    <input placeholder='City' className='h-9 border md:h-6 md:text-sm mt-5 w-full px-3'/>
-                    <input placeholder='Province' className='h-9  md:h-6  md:text-sm border mt-5 w-full px-3'/>
-                  </div>
-
+                  
                   <div>
                     <input placeholder='Phone Number' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>

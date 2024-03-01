@@ -29,7 +29,7 @@ checkout real data
 full user authentication
 shipping api
 stripe integration
-
+pagination
 
 the reduce function is throwing an error
 it's either we make the total

@@ -2,58 +2,41 @@
 import { useEffect,useState,createContext } from "react";
 import axios  from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+// import uselocal
 
 export const AuthContext = createContext();
 
-    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")|| "[]")
 export const AuthProvider =({children})=>{
-    const initialState = []
+    // let getFromLocalStorage = null
 
+    useEffect(()=>{
+      const getFromLocalStorage = JSON.parse(localStorage.getItem("cart")||"[]")
+      if (getFromLocalStorage) {
+            setCartItems(getFromLocalStorage )
+          }
+    },[])
     const notify = () => toast('Item Has been Added to Cart',{duration:1000});
-    
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
-    const[storage,setStorage] = useState([])
     // for menu data
     const [loading,setLoading] = useState(true)
     // cart
-    const [cartItems,setCartItems] = useState(cartFromLocalStorage)
+    
+
+    const [cartItems,setCartItems] = useState([]);
+    const [cart,setCart] = useState([]);
     const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
-    const [user,setUser] = useState([])
+
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
+    const [user,setUser] = useState([])
 
     if(quantity<0){
         setQuantity(0)
     }
     
-    const loginForm =async(e)=>{
-        e.preventDefault()
-        const data = {username,password}
-            await axios.post("https://pizzahouseapi.onrender.com/api/user/login",data)
-            .then((data)=>{
-                console.log(data.data?.user)
-                localStorage.setItem("user",JSON.stringify(data.data?.user))
-                window.location.href = "/"
-                // setUser(saveLogin)
-                console.log("Successful")
-            })
-            .catch((error)=>{
-              alert("Invalid details")
-                console.log(error)
-            })
-      }
-
-      useEffect(() => {
-        let value
-        // Get the value from local storage if it exists
-        value = JSON.parse(localStorage.getItem("user") || "[]")
-        setUser(value)
-      }, [])
-
     const getMenuData =async()=>{
         try{
       await axios.get("https://pizzahouseapi.onrender.com/api/menu")
@@ -70,7 +53,25 @@ export const AuthProvider =({children})=>{
             console.log(err)
         }
     }
-    
+
+    const loginForm =async(e)=>{
+        e.preventDefault()
+        const data = {username,password}
+            await axios.post("https://pizzahouseapi.onrender.com/api/user/login",data)
+            .then((data)=>{
+                console.log(data.data?.user)
+                localStorage.setItem("user",JSON.stringify(data.data?.user))
+                window.location.href = "/"
+                // setUser(saveLogin)
+                console.log("Successful")
+            })
+            .catch((error)=>{
+              alert("Invalid details")
+                console.log(error)
+            })
+      }
+   
+
     const addToCart=(item)=>{
         const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
         if(isItemInCart){
@@ -106,30 +107,33 @@ export const AuthProvider =({children})=>{
     }
 
     const getCartTotal =()=>{
-        return  cartItems.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
+            return cartItems?.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
     }
+
+    useEffect(() => {
+        let value
+        // Get the value from local storage if it exists
+        value = JSON.parse(localStorage.getItem("user") || "[]")
+        setUser(value)
+      }, [])
+
 
     useEffect(()=>{
         getMenuData()
     },[]) 
 
+  
     useEffect(()=>{
-        const cartData = JSON.parse(localStorage.getItem("cart"))
-        if(cartData){
-            setCartItems(cartData)
-        }
-    },[])
-
-    useEffect(()=>{
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-
+        if(cartItems.length) { // Only store if contacts is not empty
+            localStorage.setItem('cart', JSON.stringify(cartItems));          
+         }
     },[cartItems])
+
 
     let totalItems = 0
     cartItems?.forEach(items => {
         totalItems +=items.quantity;
     });
-
     return(
             <AuthContext.Provider 
             value={{
