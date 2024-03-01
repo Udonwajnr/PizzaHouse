@@ -32,11 +32,14 @@ export const AuthProvider =({children})=>{
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const [user,setUser] = useState([])
-
+    console.log(user._id)
     if(quantity<0){
         setQuantity(0)
     }
-    
+
+    const orders =()=>{
+
+    }
     const getMenuData =async()=>{
         try{
       await axios.get("https://pizzahouseapi.onrender.com/api/menu")

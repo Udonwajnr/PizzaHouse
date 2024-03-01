@@ -4,10 +4,33 @@ import Layout from '../components/Layout'
 import Link from "next/link"
 import CartTotal from '../components/CartTotal'
 import { AuthContext } from '../components/contextApi/context'
-import { useContext } from 'react'
+import { useContext,useState } from 'react'
+import axios from 'axios'
 
 const Checkout = () => {
-  const {getCartTotal,cartItems} = useContext(AuthContext)
+  const {getCartTotal,cartItems,user} = useContext(AuthContext)
+  const [firstName,SetFirstName] = useState("")
+  const [lastName,setLastName] = useState("")
+  const [address,setAddress] = useState("")
+  const [city,setCity] = useState("")
+  const [phoneNumber,setPhoneNumber] = useState("")
+  // const [post] = useState()
+  const userId = user._id
+  // console.log(user)
+  const data = {firstName,lastName,address,city,phoneNumber,user:user._id}
+
+  const submitShipmentAndOrder =(e)=>{
+    e.preventDefault()
+    axios.post("https://pizzahouseapi.onrender.com/api/shipping",data)
+    .then((data)=>{
+      console.log(data)
+    })
+    .catch((error)=>{
+      alert("Invalid details")
+        console.log(error)
+    })
+  }
+console.log(data)
   return (
     <Layout>
       <section className='px-20 py-10 md:px-3  md:py-5'>
@@ -15,20 +38,20 @@ const Checkout = () => {
       <div className='flex gap-x-5  md:flex-col'>
         <div className='w-8/12 md:w-full'>
           <div>
-            <div>
+            <div className="my-5">
               <div className='flex gap-x-4 items-center'>
-                <span className='font-bold'>1.</span>
+                {/* <span className='font-bold'>1.</span> */}
                 <h3 className='text-3xl md:text-lg'>Contact Information</h3>  
               </div>
-              <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
+              {/* <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
                 <p className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</p>
                 <input placeholder='Email Address' className='h-9 md:h-6 md:text-sm border mt-2 px-3 rounded-md'/>
-              </div>
-            </div>  
+              </div> */}
+            </div>
 
             <div>
               <div className='flex gap-x-4 items-center'>
-                <span className='font-bold'>2.</span>
+                <span className='font-bold'>1.</span>
                 <h3 className='text-3xl md:text-lg'>Shipping Address</h3>  
               </div>
 
@@ -36,23 +59,23 @@ const Checkout = () => {
                 <label className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</label>
                 <div>
                   <div className='flex gap-x-3'>
-                    <input placeholder='First Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
-                    <input placeholder='Last Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
+                    <input placeholder='First Name' onChange={(e)=>SetFirstName(e.target.value)} value={firstName} className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
+                    <input  value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder='Last Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
                   </div>
 
                   <div>
-                    <input placeholder='Address' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='Address' value={address} onChange={(e)=>setAddress(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
                   {/* might change to select */}
                   <div className='flex gap-x-4'>
-                    <input placeholder='Country/Region' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
-                    <input placeholder="Postal Code" className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='City' value={city} onChange={(e)=>setCity(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    {/* <input placeholder="Postal Code" className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/> */}
                   </div>
               {/* might change some of the things here */}
                   
                   <div>
-                    <input placeholder='Phone Number' className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='Phone Number' onChange={(e)=>setPhoneNumber(e.target.value)}  className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
                 </div>
               </div>
@@ -60,13 +83,13 @@ const Checkout = () => {
 
             <div>
               <div className='flex gap-x-4 items-center'>
-                <span className='font-bold'>3.</span>
+                <span className='font-bold'>2.</span>
                 <span className='text-3xl md:text-lg'>Payment Option</span>  
               </div>
               <div className=' border-l-2 border-gray-300 flex flex-col px-3 my-4 py-2 gap-y-3'>
                           {/* takes to the payment gate way we will be using stripe  */}
                           {/* if the form is not complete remove disable the payment button */}
-                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'>Payment on Deliver</button>
+                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={submitShipmentAndOrder}>Payment on Deliver</button>
                 <button className='bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'>Payment Gateway</button>
               </div>
             </div>  
