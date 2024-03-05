@@ -2,12 +2,12 @@
 import { useEffect,useState,createContext } from "react";
 import axios  from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
-// import uselocal
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+
 
 export const AuthContext = createContext();
 
 export const AuthProvider =({children})=>{
-    // let getFromLocalStorage = null
 
     useEffect(()=>{
       const getFromLocalStorage = JSON.parse(localStorage.getItem("cart")||"[]")
@@ -19,9 +19,7 @@ export const AuthProvider =({children})=>{
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
     // for menu data
-    const [loading,setLoading] = useState(true)
-    // cart
-    
+    const [loading,setLoading] = useState(true)    
 
     const [cartItems,setCartItems] = useState([]);
     const [cart,setCart] = useState([]);
@@ -37,9 +35,29 @@ export const AuthProvider =({children})=>{
         setQuantity(0)
     }
 
-    const orders =()=>{
+    const getCartTotal =()=>{
+        return cartItems?.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
+        }
 
+
+    const data={user:user._id,menuData:cartItems,totalPrice:getCartTotal()}
+        
+    console.log(data)
+    const orders =async()=>{
+      await axios.post("https://pizzahouseapi.onrender.com/api/orders",data)
+      .then((data)=>
+        console.log(data)
+      )
+      .catch((err)=>{
+        console.log(err)
+      })
     }
+    const mappingCart = cartItems.map((cart)=>cart._id)
+    const mappingQuantity = cartItems.map((cart)=>cart.quantity)
+
+    console.log(mappingCart)
+    console.log(mappingQuantity)
+    
     const getMenuData =async()=>{
         try{
       await axios.get("https://pizzahouseapi.onrender.com/api/menu")
@@ -106,12 +124,11 @@ export const AuthProvider =({children})=>{
     }
 
     const clearCart=()=>{
+        localStorage.removeItem("cart")
         setCartItems([])
     }
 
-    const getCartTotal =()=>{
-            return cartItems?.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
-    }
+
 
     useEffect(() => {
         let value
@@ -156,7 +173,7 @@ export const AuthProvider =({children})=>{
                 username,
                 setUserName,
                 password,
-                setPassword
+                setPassword,
             }}>
                 {children}
             </AuthContext.Provider>          

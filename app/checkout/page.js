@@ -1,36 +1,75 @@
 "use client"
-import React from 'react'
+import React,{useEffect} from 'react'
 import Layout from '../components/Layout'
 import Link from "next/link"
 import CartTotal from '../components/CartTotal'
 import { AuthContext } from '../components/contextApi/context'
 import { useContext,useState } from 'react'
 import axios from 'axios'
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+
 
 const Checkout = () => {
-  const {getCartTotal,cartItems,user} = useContext(AuthContext)
+  const {getCartTotal,cartItems,user,clearCart} = useContext(AuthContext)
   const [firstName,SetFirstName] = useState("")
   const [lastName,setLastName] = useState("")
   const [address,setAddress] = useState("")
   const [city,setCity] = useState("")
   const [phoneNumber,setPhoneNumber] = useState("")
+  const [done,setDone] = useState(false)
+  const [paymentResponse,setPaymentResponse] = useState('')
   // const [post] = useState()
-  const userId = user._id
-  // console.log(user)
-  const data = {firstName,lastName,address,city,phoneNumber,user:user._id}
+  console.log(user.email)
 
-  const submitShipmentAndOrder =(e)=>{
-    e.preventDefault()
-    axios.post("https://pizzahouseapi.onrender.com/api/shipping",data)
-    .then((data)=>{
-      console.log(data)
-    })
-    .catch((error)=>{
-      alert("Invalid details")
-        console.log(error)
-    })
+  // const submitShipmentAndOrder =(e)=>{
+  //   e.preventDefault()
+  //   axios.post("https://pizzahouseapi.onrender.com/api/shipping",data)
+  //   .then((data)=>{
+  //     console.log(data)
+  //   })
+  //   .catch((error)=>{
+  //     alert("Invalid details")
+  //       console.log(error)
+  //   })
+  // }
+
+  if(done === true){    
+    clearCart()
+    window.location.href ="/"  
   }
-console.log(data)
+
+  const config = {
+    public_key:'FLWPUBK_TEST-ed31f789819346c8b94d7e45de9b3b47-X',
+    tx_ref: Date.now(),
+    amount: getCartTotal(),
+    currency: 'NGN',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: user.email,
+      phone_number: phoneNumber,
+      name: firstName + lastName,
+    },
+    customizations: {
+      title: 'My store',
+      description: 'Payment for items in cart',
+      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
+  };
+
+  const orders =async()=>{    
+      const data={user:user._id,menuData:cartItems,totalPrice:getCartTotal(),firstName,lastName,address,city,phoneNumber,paymentId:'',paymentStatus:true}
+      await axios.post("https://pizzahouseapi.onrender.com/api/orders",data)
+      .then((data)=>{
+        console.log(data)
+        // window.location.href="/"
+      }
+      )
+      .catch((err)=>{
+        console.log(err)
+      })
+  }
+
+    const handleFlutterPayment = useFlutterwave(config);
   return (
     <Layout>
       <section className='px-20 py-10 md:px-3  md:py-5'>
@@ -89,8 +128,17 @@ console.log(data)
               <div className=' border-l-2 border-gray-300 flex flex-col px-3 my-4 py-2 gap-y-3'>
                           {/* takes to the payment gate way we will be using stripe  */}
                           {/* if the form is not complete remove disable the payment button */}
-                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={submitShipmentAndOrder}>Payment on Deliver</button>
-                <button className='bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'>Payment Gateway</button>
+                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={clearCart}>Payment on Deliver</button>
+                <button className='bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={()=> handleFlutterPayment({
+              callback: (response) => {
+                console.log(response);
+
+                orders()
+                closePaymentModal();
+                setDone(true)
+              },
+              onClose: () => {},
+            })}>Payment Gateway</button>
               </div>
             </div>  
           </div>  
