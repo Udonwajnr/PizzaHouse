@@ -7,7 +7,7 @@ import { AuthContext } from '../components/contextApi/context'
 import { useContext,useState } from 'react'
 import axios from 'axios'
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-
+import { useRouter } from 'next/navigation';
 
 const Checkout = () => {
   const {getCartTotal,cartItems,user,clearCart} = useContext(AuthContext)
@@ -19,19 +19,8 @@ const Checkout = () => {
   const [done,setDone] = useState(false)
   const [paymentResponse,setPaymentResponse] = useState('')
   // const [post] = useState()
-  console.log(user.email)
-
-  // const submitShipmentAndOrder =(e)=>{
-  //   e.preventDefault()
-  //   axios.post("https://pizzahouseapi.onrender.com/api/shipping",data)
-  //   .then((data)=>{
-  //     console.log(data)
-  //   })
-  //   .catch((error)=>{
-  //     alert("Invalid details")
-  //       console.log(error)
-  //   })
-  // }
+  const [complete,setComplete] = useState()
+  const router = useRouter();
 
   if(done === true){    
     clearCart()
@@ -56,18 +45,36 @@ const Checkout = () => {
     },
   };
 
+  const isAnyFieldEmpty = () => {
+  return (
+    firstName.trim() === "" ||
+    lastName.trim() === "" ||
+    address.trim() === "" ||
+    city.trim() === "" ||
+    phoneNumber.trim() === ""
+  );
+};
+
   const orders =async()=>{    
-      const data={user:user._id,menuData:cartItems,totalPrice:getCartTotal(),firstName,lastName,address,city,phoneNumber,paymentId:'',paymentStatus:true}
+      const data={user:user._id,menuData:cartItems,totalPrice:getCartTotal(),firstName,lastName,address,city,phoneNumber,paymentId:41413,paymentStatus:true}
       await axios.post("https://pizzahouseapi.onrender.com/api/orders",data)
       .then((data)=>{
         console.log(data)
-        // window.location.href="/"
       }
       )
       .catch((err)=>{
         console.log(err)
       })
   }
+
+  useEffect(()=>{
+    if(!user){
+      router.push('/login')
+    }
+    else if(!cartItems){
+      router.push('/menu')  
+    }
+  },[])
 
     const handleFlutterPayment = useFlutterwave(config);
   return (
@@ -98,23 +105,23 @@ const Checkout = () => {
                 <label className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</label>
                 <div>
                   <div className='flex gap-x-3'>
-                    <input placeholder='First Name' onChange={(e)=>SetFirstName(e.target.value)} value={firstName} className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
-                    <input  value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder='Last Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
+                    <input placeholder='First Name' onChange={(e)=>SetFirstName(e.target.value)} value={firstName.trim()} className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
+                    <input  value={lastName.trim()} onChange={(e)=>setLastName(e.target.value)} placeholder='Last Name' className='h-9 md:h-6 md:text-sm border mt-5 w-full rounded-md px-3'/>
                   </div>
 
                   <div>
-                    <input placeholder='Address' value={address} onChange={(e)=>setAddress(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='Address' value={address.trim()} onChange={(e)=>setAddress(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
 
                   {/* might change to select */}
                   <div className='flex gap-x-4'>
-                    <input placeholder='City' value={city} onChange={(e)=>setCity(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='City' value={city.trim()} onChange={(e)=>setCity(e.target.value)} className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                     {/* <input placeholder="Postal Code" className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/> */}
                   </div>
               {/* might change some of the things here */}
                   
                   <div>
-                    <input placeholder='Phone Number' onChange={(e)=>setPhoneNumber(e.target.value)}  className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
+                    <input placeholder='Phone Number' value={phoneNumber.trim()} onChange={(e)=>setPhoneNumber(e.target.value)}  className='h-9 md:h-6 md:text-sm border mt-5 w-full px-3'/>
                   </div>
                 </div>
               </div>
@@ -128,17 +135,25 @@ const Checkout = () => {
               <div className=' border-l-2 border-gray-300 flex flex-col px-3 my-4 py-2 gap-y-3'>
                           {/* takes to the payment gate way we will be using stripe  */}
                           {/* if the form is not complete remove disable the payment button */}
-                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={clearCart}>Payment on Deliver</button>
-                <button className='bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={()=> handleFlutterPayment({
-              callback: (response) => {
-                console.log(response);
-
-                orders()
-                closePaymentModal();
-                setDone(true)
-              },
-              onClose: () => {},
-            })}>Payment Gateway</button>
+                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={clearCart} disabled={true}>Payment on Deliver</button>
+                <button className={'bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'}
+                 onClick={()=>{
+                  if (isAnyFieldEmpty()) {
+                    alert("Please fill in all fields");
+                  } 
+                  else{
+                    handleFlutterPayment({
+                    callback: (response) => {
+                    // console.log(response);
+                    orders()
+                    closePaymentModal();
+                    setDone(true)
+                    },
+                    onClose: () => {},})
+                  }
+                }
+                }
+                  >Payment Gateway</button>
               </div>
             </div>  
           </div>  

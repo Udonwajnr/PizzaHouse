@@ -22,8 +22,6 @@ export const AuthProvider =({children})=>{
     const [loading,setLoading] = useState(true)    
 
     const [cartItems,setCartItems] = useState([]);
-    const [cart,setCart] = useState([]);
-    const [tax,setTax]= useState(2.99)
     const [quantity,setQuantity] = useState(1)
     const [totalCartItems,SetTotalCartItems] = useState(0)
 
@@ -38,25 +36,6 @@ export const AuthProvider =({children})=>{
     const getCartTotal =()=>{
         return cartItems?.reduce((total,item)=>(total+item.price * item.quantity),0).toFixed(2)
         }
-
-
-    const data={user:user._id,menuData:cartItems,totalPrice:getCartTotal()}
-        
-    console.log(data)
-    const orders =async()=>{
-      await axios.post("https://pizzahouseapi.onrender.com/api/orders",data)
-      .then((data)=>
-        console.log(data)
-      )
-      .catch((err)=>{
-        console.log(err)
-      })
-    }
-    const mappingCart = cartItems.map((cart)=>cart._id)
-    const mappingQuantity = cartItems.map((cart)=>cart.quantity)
-
-    console.log(mappingCart)
-    console.log(mappingQuantity)
     
     const getMenuData =async()=>{
         try{
