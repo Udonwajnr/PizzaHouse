@@ -28,7 +28,7 @@ export const AuthProvider =({children})=>{
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const [user,setUser] = useState([])
-    console.log(user._id)
+
     if(quantity<0){
         setQuantity(0)
     }
@@ -86,28 +86,34 @@ export const AuthProvider =({children})=>{
         notify()
     }
 
-    const removeFromCart=(item)=>{
-        const isItemInCart = cartItems.find((cartItem)=>cartItem._id === item._id)
-        if(isItemInCart?.quantity === 1 || isItemInCart?.quantity <= 0 ){
-            setCartItems(cartItems.filter((cartItem)=>cartItem._id !== item._id)) // if the quantity of the item is 1, remove the item from the cart
-        }
-
-        else{
-            setCartItems(
-                cartItems.map((cartItem)=>cartItem._id === item._id?{...cartItem,quantity:cartItem.quantity - 1}// if the quantity of the item is greater than 1, decrease the quantity of the item
-                :
-                cartItem
-                )                
+    const removeFromCart = (item) => {
+        const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
+      
+        if (isItemInCart.quantity === 1) {
+          // Remove item from cart state
+          const updatedCartItems = cartItems.filter((cartItem) => cartItem._id !== item._id);
+          setCartItems(updatedCartItems);
+      
+          // Update local storage
+          const updatedLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]').filter(
+            (cartItem) => cartItem._id !== item._id
+          );
+          localStorage.setItem('cart', JSON.stringify(updatedLocalStorage));
+        } else {
+          // Decrease quantity if greater than 1
+          setCartItems(
+            cartItems.map((cartItem) =>
+              cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
             )
+          );
         }
-    }
+      };
+      
 
     const clearCart=()=>{
         localStorage.removeItem("cart")
         setCartItems([])
     }
-
-
 
     useEffect(() => {
         let value

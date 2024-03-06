@@ -17,9 +17,6 @@ const Checkout = () => {
   const [city,setCity] = useState("")
   const [phoneNumber,setPhoneNumber] = useState("")
   const [done,setDone] = useState(false)
-  const [paymentResponse,setPaymentResponse] = useState('')
-  // const [post] = useState()
-  const [complete,setComplete] = useState()
   const router = useRouter();
 
   if(done === true){    
