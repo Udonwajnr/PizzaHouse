@@ -18,7 +18,7 @@ const Login = () => {
                 </div>
                 <div className='flex flex-col'>
                     <input type='text' value={username} onChange={(e)=>setUserName(e.target.value.trim())} className='border h-10 my-1 px-2 focus:outline-none' placeholder='Username'/>
-                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}  className='border h-10 my-1 px-2 focus:outline-none' placeHolder="Password"/>
+                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}  className='border h-10 my-1 px-2 focus:outline-none' placeholder="Password"/>
                 </div>
                 <button className='bg-purple text-white py-2 w-full my-1 hover:bg-violet-500'>Login</button>
             </form>
