@@ -40,7 +40,7 @@ return (
                 <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition'>Contact Us</Link>
               </li>
               {
-                user?.length === 0 ?
+                Object?.keys(user).length===0?
                 <>
                   <li>
                     <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition'>Register</Link>

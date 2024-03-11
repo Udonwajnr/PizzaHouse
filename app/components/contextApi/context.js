@@ -15,6 +15,7 @@ export const AuthProvider =({children})=>{
             setCartItems(getFromLocalStorage )
           }
     },[])
+
     const notify = () => toast('Item Has been Added to Cart',{duration:1000});
     const [isLoading,setIsLoading] = useState(false)   
     const [menu,setMenu] = useState([])
@@ -27,7 +28,7 @@ export const AuthProvider =({children})=>{
 
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
-    const [user,setUser] = useState([])
+    const [user,setUser] = useState({})
 
     if(quantity<0){
         setQuantity(0)
@@ -50,7 +51,7 @@ export const AuthProvider =({children})=>{
       })
         }
         catch(err){
-            console.log(err)
+            console.log(err)   
         }
     }
 
@@ -118,7 +119,7 @@ export const AuthProvider =({children})=>{
     useEffect(() => {
         let value
         // Get the value from local storage if it exists
-        value = JSON.parse(localStorage.getItem("user") || "[]")
+        value = JSON.parse(localStorage.getItem("user")||"{}")
         setUser(value)
       }, [])
 
@@ -126,14 +127,12 @@ export const AuthProvider =({children})=>{
     useEffect(()=>{
         getMenuData()
     },[]) 
-
   
     useEffect(()=>{
         if(cartItems.length) { // Only store if contacts is not empty
             localStorage.setItem('cart', JSON.stringify(cartItems));          
          }
     },[cartItems])
-
 
     let totalItems = 0
     cartItems?.forEach(items => {

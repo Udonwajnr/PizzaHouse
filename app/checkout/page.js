@@ -19,9 +19,10 @@ const Checkout = () => {
   const [done,setDone] = useState(false)
   const router = useRouter();
 
+
   if(done === true){    
     clearCart()
-    window.location.href ="/"  
+    router.push("/")  
   }
 
   const config = {
@@ -64,14 +65,12 @@ const Checkout = () => {
       })
   }
 
-  useEffect(()=>{
-    if(!user){
-      router.push('/login')
-    }
-    else if(!cartItems){
-      router.push('/menu')  
-    }
-  },[])
+  if(Object?.keys(user).length === 0){
+    router.push('/login')
+  }
+  else if(!cartItems){
+    router.push('/menu')  
+  }
 
     const handleFlutterPayment = useFlutterwave(config);
   return (
@@ -132,7 +131,7 @@ const Checkout = () => {
               <div className=' border-l-2 border-gray-300 flex flex-col px-3 my-4 py-2 gap-y-3'>
                           {/* takes to the payment gate way we will be using stripe  */}
                           {/* if the form is not complete remove disable the payment button */}
-                <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={clearCart} disabled={true}>Payment on Deliver</button>
+                {/* <button className='bg-purple text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3' onClick={clearCart} disabled={true}>Payment on Deliver</button> */}
                 <button className={'bg-black text-white py-2 px-4 rounded-xl md:text-sm md:py-1 md:px-3'}
                  onClick={()=>{
                   if (isAnyFieldEmpty()) {
@@ -150,7 +149,7 @@ const Checkout = () => {
                   }
                 }
                 }
-                  >Payment Gateway</button>
+                  >Flutterwave Payment</button>
               </div>
             </div>  
           </div>  

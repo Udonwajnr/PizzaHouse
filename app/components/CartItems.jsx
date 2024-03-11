@@ -18,7 +18,7 @@ const CartItems = ({name,category,price,image,id,items}) => {
                     <div className='flex items-center h-10'>
 
                     <button className='border px-3 h-full hover:bg-slate-100 flex items-center justify-center' onClick={()=>removeFromCart(items)}>
-                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M10.5 24h28"></path></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M10.5 24h28"></path></svg>
                     </button>
                             <div className='px-4 py-1 h-full border text-sm flex items-center justify-center'>
                             {
@@ -26,7 +26,7 @@ const CartItems = ({name,category,price,image,id,items}) => {
                             }
                             </div>
                     <button className='border px-3 h-full hover:bg-slate-100 flex items-center justify-center' onClick={()=>addToCart(items)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m24.06 10l-.036 28M10 24h28"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="m24.06 10l-.036 28M10 24h28"></path></svg>
                     </button>
 
                     </div>

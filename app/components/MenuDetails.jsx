@@ -25,7 +25,7 @@ const MenuDetails = ({categoryName,title,price,description,menuDetails}) => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="m24.06 10l-.036 28M10 24h28"></path></svg>
               </button>
             </div>
-            <button className='py-1 px-3 bg-purple text-white rounded-md md:px-2 md:text-sm'>Add to Cart</button>
+            <button className='py-1 px-3 bg-purple text-white rounded-md md:px-2 md:text-sm' onClick={()=>addToCart(menuDetails)}>Add to Cart</button>
         </div>
     </div>
   )

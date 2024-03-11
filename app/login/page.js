@@ -7,7 +7,15 @@ import { useState } from 'react'
 import { AuthContext } from '../components/contextApi/context'
 
 const Login = () => {
-  const {setUser,user,username,setUserName,password,setPassword,loginForm} = useContext(AuthContext)
+  const [loading,setLoading] = useState(false)
+  const {setUser,user,username,setUserName,password,setPassword,loginForm,cartItems} = useContext(AuthContext)
+  const router = useRouter();
+  const [userData,setUserData] = useState({})
+
+  if(Object?.keys(user).length){
+    router.push('/')
+  }
+
   return (
     <Layout>
     <div className='flex justify-center items-center h-screen bg-[#f3f1f6]'>
