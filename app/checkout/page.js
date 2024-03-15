@@ -7,7 +7,8 @@ import { AuthContext } from '../components/contextApi/context'
 import { useContext,useState } from 'react'
 import axios from 'axios'
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import { useRouter } from 'next/navigation';
+import { useRouter, } from 'next/navigation';
+import { redirect } from "next/navigation";
 
 const Checkout = () => {
   const {getCartTotal,cartItems,user,clearCart} = useContext(AuthContext)
@@ -18,7 +19,6 @@ const Checkout = () => {
   const [phoneNumber,setPhoneNumber] = useState("")
   const [done,setDone] = useState(false)
   const router = useRouter();
-
 
   if(done === true){    
     clearCart()
@@ -65,12 +65,17 @@ const Checkout = () => {
       })
   }
 
-  if(Object?.keys(user).length === 0){
-    router.push('/login')
-  }
-  else if(!cartItems){
-    router.push('/menu')  
-  }
+  useEffect(()=>{
+    if(!user){
+      router.push('/login')  
+    }
+    if(!cartItems){
+      router.push('/menu')  
+    }
+  },[user,router,cartItems])
+  
+
+  // console.log(cartItems)
 
     const handleFlutterPayment = useFlutterwave(config);
   return (

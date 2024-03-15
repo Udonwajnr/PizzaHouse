@@ -99,11 +99,14 @@ const Register = () => {
             setLoading(false)
         }
     }
+
+    useEffect(()=>{
+      if(Object?.keys(user).length){
+        router.push('/')
+      }
+    },[user,router])
     
-    if(Object?.keys(user).length){
-      router.push('/')
-    }
-    
+
     return (
     <Layout>
          <Toaster

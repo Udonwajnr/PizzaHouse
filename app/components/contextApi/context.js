@@ -3,7 +3,7 @@ import { useEffect,useState,createContext } from "react";
 import axios  from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-
+import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext();
 
@@ -29,7 +29,7 @@ export const AuthProvider =({children})=>{
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const [user,setUser] = useState({})
-
+    const router = useRouter()
     if(quantity<0){
         setQuantity(0)
     }
@@ -62,7 +62,7 @@ export const AuthProvider =({children})=>{
             .then((data)=>{
                 console.log(data.data?.user)
                 localStorage.setItem("user",JSON.stringify(data.data?.user))
-                window.location.href = "/"
+                router.push("/")
                 // setUser(saveLogin)
                 console.log("Successful")
             })

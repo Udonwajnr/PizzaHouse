@@ -10,11 +10,13 @@ const Login = () => {
   const [loading,setLoading] = useState(false)
   const {setUser,user,username,setUserName,password,setPassword,loginForm,cartItems} = useContext(AuthContext)
   const router = useRouter();
-  const [userData,setUserData] = useState({})
 
-  if(Object?.keys(user).length){
-    router.push('/')
-  }
+  useEffect(()=>{
+    if(Object?.keys(user).length){
+      router.push('/')
+    }
+    console.log(user)
+  },[user,router])
 
   return (
     <Layout>
