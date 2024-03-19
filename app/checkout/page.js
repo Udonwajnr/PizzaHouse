@@ -88,7 +88,7 @@ const Checkout = () => {
             <div className="my-5">
               <div className='flex gap-x-4 items-center'>
                 {/* <span className='font-bold'>1.</span> */}
-                <h3 className='text-3xl md:text-lg'>Contact Information</h3>  
+                <h3 className='text-3xl md:flex-col'>Contact Information</h3>  
               </div>
               {/* <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
                 <p className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</p>
@@ -196,6 +196,7 @@ const Checkout = () => {
               </div>
               
               {/* Total */}
+              {/* Total */}
               <div className='bg-[#ede7f7] py-5 px-5 mt-4'>
                 <h2 className='mb-5 text-3xl md:text-lg'>Cart totals</h2>
                 <div className='md:text-sm'>
@@ -221,3 +222,5 @@ const Checkout = () => {
 }
 
 export default Checkout
+
+

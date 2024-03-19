@@ -92,7 +92,7 @@ img{
 }
 
 .about-img-grid{
-  grid-template-columns: repeat(2,500px);
+  grid-template-columns: repeat(2,350px);
 }
 
 
@@ -119,6 +119,19 @@ img{
   .grid-menu{
     display: flex;
     flex-wrap: wrap;
+  }
+  
+  
+}
+
+@media only screen and (max-width: 1280px) {
+  .about-img-grid{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .about-img-grid img{
+    width: 100%;
+    /* max-width:300px ; */
   }
   
   
