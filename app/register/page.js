@@ -119,26 +119,26 @@ const Register = () => {
             }  
           }}
         />
-        <div className='flex justify-center items-center h-screen bg-[#f3f1f6]'>
-            <form className='max-w-3xl w-full' onSubmit={submitForm}>
+        <div className='flex justify-center items-center h-screen bg-[#f3f1f6] '>
+            <form className='max-w-3xl w-full lg:p-3' onSubmit={submitForm}>
                 <div className='flex flex-col justify-center items-center my-2'>
                 <img src={"/pizzalogo.png"} alt="logo" className=' md:w-10 md:h-10 w-16 h-16'/>
                     <h2 className='text-3xl font-bold'>Create Your Account</h2>
                 </div>
                 <div className='flex flex-col'>
-                    <input type='text' value={username} onChange={(e)=>setUserName(e.target.value.trim())} className='border h-10 my-1 px-2 focus:outline-none' placeholder='Username' />
+                    <input type='text' value={username} onChange={(e)=>setUserName(e.target.value.trim())} className='border h-10 my-1 px-2 lg:h-7 focus:outline-none lg:text-sm' placeholder='Username' />
                     {duplicateError?.includes("username")&& <div className="error text-red-500">Username Already Exist</div>}
                     {errors.username && <div className="error">{errors.username}</div>}
-                    <input type='text' value={email} onChange={(e)=>setEmail(e.target.value.trim())} className='border h-10 my-1 px-2 focus:outline-none' placeholder='Email'/>
+                    <input type='text' value={email} onChange={(e)=>setEmail(e.target.value.trim())} className='border h-10 my-1 px-2 focus:outline-none lg:h-7 lg:text-sm' placeholder='Email'/>
                     {duplicateError?.includes("email")&& <div className="error text-red-500">Email Already Exist</div>}
                     {errors.email && <div className="error">{errors.email}</div>}
-                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} className='border h-10 my-1 px-2 focus:outline-none' placeholder="Password"/>
+                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} className='border h-10 my-1 px-2 focus:outline-none lg:h-7 lg:text-sm' placeholder="Password"/>
                     {errors.password && <div className="error">{errors.password}</div>}
-                    <input type='password' value={password1} onChange={(e)=>setPassword1(e.target.value)} className='border h-10 my-1 px-2 focus:outline-none' placeholder="Repeat Password"/>  
+                    <input type='password' value={password1} onChange={(e)=>setPassword1(e.target.value)} className='border h-10 my-1 px-2 focus:outline-none lg:h-7 lg:text-sm' placeholder="Repeat Password"/>  
                     {errors.password1 && <div className="error">{errors.password1}</div>}
                 
                 </div>
-                <button className='bg-purple text-white py-2 w-full my-1 hover:bg-violet-500 flex justify-center items-center gap-x-3'>
+                <button className='bg-purple text-white py-2 w-full my-1 hover:bg-violet-500 flex justify-center items-center gap-x-3 lg:h-7'>
                   {
                     loading?
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity={0.25}></path><path fill="currentColor" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"></animateTransform></path></svg> 

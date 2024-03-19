@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { AuthContext } from './contextApi/context'
 
 const ResponsiveMenu = ({toggleNav}) => {
-  const {totalCartItems,totalItems,getCartTotal} = useContext(AuthContext)
+  const {totalCartItems,totalItems,getCartTotal,user} = useContext(AuthContext)
   
   return (
     <header className='w-full h-screen fixed z-20 top-0 responsive-menu  justify-end hidden md:flex' onClick={toggleNav}>
@@ -32,13 +32,22 @@ const ResponsiveMenu = ({toggleNav}) => {
               <Link href="/contact" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Contact Us</Link>
             </li>
 
-              <li>
+            {
+                Object?.keys(user).length===0?
+                <>
+               <li>
                   <Link href="/register" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Register</Link>
                 </li>
                 
                 <li>
                   <Link href="/login" className='hover:text-purple hover:duration-200 duration-200 transition text-sm'>Login</Link>
                 </li>
+                </>
+                :
+                <>
+                  <h2 className="font-bold bg-purple text-white px-1 rounded-md">{user?.username}</h2>
+                </>
+              }
           </ul>
 
           <div className='flex items-center gap-x-3 '>

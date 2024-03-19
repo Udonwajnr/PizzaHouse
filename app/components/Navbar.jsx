@@ -5,6 +5,7 @@ import ResponsiveMenu from './ResponsiveMenu'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from './contextApi/context'
+
 const Navbar = () => {
 const [toggle,setToggle] = useState(false)
 const {totalCartItems,totalItems,getCartTotal,user} = useContext(AuthContext)

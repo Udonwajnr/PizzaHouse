@@ -66,13 +66,16 @@ const Checkout = () => {
   }
 
   useEffect(()=>{
-    if(!user){
+    let value
+        // Get the value from local storage if it exists
+        value = JSON.parse(localStorage.getItem("user")||"{}")
+    if(Object?.keys(value).length === 0){
       router.push('/login')  
     }
     if(!cartItems){
       router.push('/menu')  
     }
-  },[user,router,cartItems])
+  },[-cartItems])
   
 
   // console.log(cartItems)
@@ -88,7 +91,7 @@ const Checkout = () => {
             <div className="my-5">
               <div className='flex gap-x-4 items-center'>
                 {/* <span className='font-bold'>1.</span> */}
-                <h3 className='text-3xl md:flex-col'>Contact Information</h3>  
+                <h3 className='text-3xl md:text-lg'>Contact Information</h3>  
               </div>
               {/* <div className=' border-l-2  border-gray-300 flex flex-col px-3 my-4 py-2'>
                 <p className='mt-1 md:text-xs'>We'll use this email to send you details and update you about your order</p>
