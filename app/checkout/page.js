@@ -1,14 +1,12 @@
 "use client"
 import React,{useEffect} from 'react'
 import Layout from '../components/Layout'
-import Link from "next/link"
-import CartTotal from '../components/CartTotal'
 import { AuthContext } from '../components/contextApi/context'
 import { useContext,useState } from 'react'
 import axios from 'axios'
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useRouter, } from 'next/navigation';
-import { redirect } from "next/navigation";
+import PaymentSuccessfulModal from '../components/PaymentSuccessfulModal'
 
 const Checkout = () => {
   const {getCartTotal,cartItems,user,clearCart} = useContext(AuthContext)
@@ -98,7 +96,6 @@ const Checkout = () => {
                 <input placeholder='Email Address' className='h-9 md:h-6 md:text-sm border mt-2 px-3 rounded-md'/>
               </div> */}
             </div>
-
             <div>
               <div className='flex gap-x-4 items-center'>
                 <span className='font-bold'>1.</span>
@@ -151,6 +148,7 @@ const Checkout = () => {
                     // console.log(response);
                     orders()
                     closePaymentModal();
+                    alert("Payment successful")
                     setDone(true)
                     },
                     onClose: () => {},})
@@ -220,6 +218,8 @@ const Checkout = () => {
         </div>
       </div>
       </section>
+
+      <PaymentSuccessfulModal/>
     </Layout>
   )
 }

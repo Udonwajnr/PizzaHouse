@@ -51,7 +51,7 @@ const MenuDetailsSection = ({params}) => {
   },[slug])
   return (
     <Layout>
-        <Toaster
+        {/* <Toaster
              toastOptions={{
               style: {
                 border: '1px solid #713200',
@@ -60,7 +60,7 @@ const MenuDetailsSection = ({params}) => {
                 backgroundColor:'#52b963'
               }  
             }}
-        />
+        /> */}
 
       <div className='h-[90vh] bg-[#f3f1f6]'>
 
@@ -95,6 +95,4 @@ const MenuDetailsSection = ({params}) => {
   )
     }
 
-    // .filter((data)=>data.category.name === menuDetails.category.name)
-    
 export default MenuDetailsSection

@@ -62,8 +62,8 @@ export const AuthProvider =({children})=>{
             .then((data)=>{
                 console.log(data.data?.user)
                 localStorage.setItem("user",JSON.stringify(data.data?.user))
-                router.push("/")
-                // setUser(saveLogin)
+                // router.push("/")
+                window.location.href='/'
                 console.log("Successful")
             })
             .catch((error)=>{
@@ -134,6 +134,12 @@ export const AuthProvider =({children})=>{
          }
     },[cartItems])
 
+    const logout=()=>{
+      localStorage.removeItem("user")
+      setUser([])
+      window.location.href='/'
+    }
+
     let totalItems = 0
     cartItems?.forEach(items => {
         totalItems +=items.quantity;
@@ -158,6 +164,7 @@ export const AuthProvider =({children})=>{
                 setUserName,
                 password,
                 setPassword,
+                logout
             }}>
                 {children}
             </AuthContext.Provider>          
